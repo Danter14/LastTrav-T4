@@ -1,4 +1,4 @@
-Travian-T4
+LastTrav-T4
 ==========
 
 LastTrav by Danter14 project by EBDa by yi12345
