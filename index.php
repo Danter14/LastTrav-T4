@@ -13,7 +13,7 @@
 ##  License:       Creative Commons BY-NC-SA 3.0                               ##
 ##  Copyright:     ZravianX (c) 2011 - All rights reserved                     ##
 ##  URLs:          http://zravianx.zzjhons.com                                 ##
-##  Source code:   http://www.github.com/Danter14/LastTrav-T4                  ##
+##  Source code:   http://www.github.com/ZZJHONS/ZravianX                      ##
 ##                                                                             ##
 #################################################################################
 
@@ -28,7 +28,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Powered by ZravianX - <?php echo SERVER_NAME; ?></title>
+	<title>Powered by ZravianX - <?php echo SERVER_NAME; ?></title>
     <link rel="shortcut icon" href="favicon.ico" />
     <meta content="description" content="<?php echo $lang['index2']['description']; ?>" />
     <link rel="stylesheet" type="text/css" href="gpack/travian_homepage/lang/en/compact.css"/>
@@ -344,7 +344,7 @@
                         stagenav:$$("#buttons-click li"),
                         stagelink:$$(".stage-link"),
                     });
-
+            
                     //tooltip
                     var tooltipwidget = new tooltipWidget({
                         tips: $$("#strips li"),
@@ -362,7 +362,7 @@
                         prev_items:$('preview_items'),
                         close:$('close')
                     });
-
+            
                     //slideshow [footer]
                     $('screenshotp').addEvents(
                     {
@@ -385,10 +385,10 @@
                                 close:$('close'),
                                 directcall:true
                             });
-
+            
                         }
                     });
-
+            
                     //popup anchor
                     var url = new URI();
                     var anchor = url.get('fragment');
