@@ -8,6 +8,11 @@ if(isset($_GET['aid']) && $_GET['aid']==$session->alliance){
     $topic = $message->readingNotice['topic'];
     $time = $message->readingNotice['time'];
 }
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+$class = "units";
+}else{
+$class = "units last";
+}
 ?>
 				<table cellpadding="1" cellspacing="1" id="report_surround">
 				<thead class="theader">
@@ -89,7 +94,7 @@ for($i=3;$i<=12;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[13]."</td>";
     }
 echo "</tr></tbody>";
-echo "<tbody class=\"units last\"><tr><th>".REPORT_CASUALTIES."</th>";
+echo "<tbody class=\"".$class."\"><tr><th>".REPORT_CASUALTIES."</th>";
 for($i=14;$i<=23;$i++) {
 	if($dataarray[$i] == 0) {
     	echo "<td class=\"unit none\">0</td>";
@@ -104,38 +109,64 @@ for($i=14;$i<=23;$i++) {
     else {
     	echo "<td class=\"unit last\">".$dataarray[24]."</td>";
     }
+	
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+echo "</tr></tbody>";
+echo "<tbody class=\"units last\"><tr><th>".REPORT_PRISONERS."</th>";
+for($i=158;$i<=167;$i++) {
+	if($dataarray[$i] == 0) {
+    	echo "<td class=\"unit none\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit\">".$dataarray[$i]."</td>";
+    }
+}
+	if($dataarray[168] == 0) {
+    	echo "<td class=\"unit none last\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit last\">".$dataarray[168]."</td>";
+    }
+}
 
 echo "</tr></tbody>";
-if ($dataarray[151]!='' and $dataarray[152]!=''){ //ram
+if ($dataarray[150]!='' and $dataarray[151]!=''){ //ram
 
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
-	<img class="unit u<?php echo $dataarray[151]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[151]]; ?>" title="<?php echo $technology->unarray[$dataarray[151]]; ?>" />
-	<?php echo $dataarray[152]; ?>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+	<img class="unit u<?php echo $dataarray[150]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[150]]; ?>" title="<?php echo $technology->unarray[$dataarray[150]]; ?>" />
+	<?php echo $dataarray[151]; ?>
     </td></tr></tbody>
 <?php } 
-if ($dataarray[153]!='' and $dataarray[154]!=''){ //cata
+if ($dataarray[152]!='' and $dataarray[153]!=''){ //cata
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
-	<img class="unit g<?php echo $dataarray[153]; ?>Icon" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[153]]; ?>" title="<?php echo $technology->unarray[$dataarray[153]]; ?>" />
-	<?php echo $dataarray[154]; ?>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+	<img class="unit g<?php echo $dataarray[152]; ?>Icon" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[152]]; ?>" title="<?php echo $technology->unarray[$dataarray[152]]; ?>" />
+	<?php echo $dataarray[153]; ?>
     </td></tr></tbody>
 <?php }
-if ($dataarray[155]!='' and $dataarray[156]!=''){ //chief
+if ($dataarray[154]!='' and $dataarray[155]!=''){ //chief
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
-	<img class="unit u<?php echo $dataarray[155]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[155]]; ?>" title="<?php echo $technology->unarray[$dataarray[155]]; ?>" />
-	<?php echo $dataarray[156]; ?>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+	<img class="unit u<?php echo $dataarray[154]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[154]]; ?>" title="<?php echo $technology->unarray[$dataarray[154]]; ?>" />
+	<?php echo $dataarray[155]; ?>
     </td></tr></tbody>
 <?php } ?>
-<?php if ($dataarray[157]!='' and $dataarray[158]!=''){ //spy
+<?php if ($dataarray[156]!='' and $dataarray[157]!=''){ //spy
 ?>
     <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
-    <?php echo $dataarray[158]; ?>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+    <?php echo $dataarray[157]; ?>
+    </td></tr></tbody>
+<?php } 
+if ($dataarray[169]!='' and $dataarray[169]!=''){ //release prisoners
+?>
+    <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+    <?php echo $dataarray[169]; ?>
     </td></tr></tbody>
 <?php } ?>
 

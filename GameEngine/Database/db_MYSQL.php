@@ -124,6 +124,12 @@
         		return $dbarray[$field];
         	}
 			
+			function getInvitedUser($uid) {
+				$q = "SELECT * FROM " . TB_PREFIX . "users where invited = $uid order by regtime desc";
+				$result = mysql_query($q, $this->connection);
+				return $this->mysql_fetch_all($result);
+			}
+			
 			function getStarvation(){
                     $q = "SELECT * FROM " . TB_PREFIX . "vdata where starv != 0";
                     $result = mysql_query($q, $this->connection);
@@ -3657,9 +3663,78 @@ break;
 	}
 
 	//end general statistics
+	
+	function addFriend($uid, $column, $friend) {
+		$q = "UPDATE " . TB_PREFIX . "users SET $column = $friend WHERE id = $uid";
+		return mysql_query($q, $this->connection);
+	}
 
-        }
-        ;
+	function deleteFriend($uid, $column) {
+		$q = "UPDATE " . TB_PREFIX . "users SET $column = 0 WHERE id = $uid";
+		return mysql_query($q, $this->connection);
+	}
+
+	function checkFriends($uid) {
+		$user = $this->getUserArray($uid, 1);
+		for($i=0;$i<=19;$i++) {
+		if($user['friend'.$i] == 0 && $user['friend'.$i.'wait'] == 0){
+		for($j=$i+1;$j<=19;$j++) {
+		$k = $j-1;
+		if($user['friend'.$j] != 0){
+		$friend = $this->getUserField($uid, "friend".$j, 0);
+		$this->addFriend($uid,"friend".$k,$friend);
+		$this->deleteFriend($uid,"friend".$j);
+		}
+		if($user['friend'.$j.'wait'] == 0){
+		$friendwait = $this->getUserField($uid, "friend".$j."wait", 0);
+		$this->addFriend($sessionuid,"friend".$k."wait",$friendwait);
+		$this->deleteFriend($uid,"friend".$j."wait");
+		}
+		}
+		}
+		}
+	}
+
+	function addPrisoners($wid,$from,$t1,$t2,$t3,$t4,$t5,$t6,$t7,$t8,$t9,$t10,$t11) {
+		$q = "INSERT INTO " . TB_PREFIX . "prisoners values (0,$wid,$from,$t1,$t2,$t3,$t4,$t5,$t6,$t7,$t8,$t9,$t10,$t11)";
+		mysql_query($q, $this->connection);
+		return mysql_insert_id($this->connection);
+	}
+	
+	function updatePrisoners($wid,$from,$t1,$t2,$t3,$t4,$t5,$t6,$t7,$t8,$t9,$t10,$t11) {
+		$q = "UPDATE " . TB_PREFIX . "prisoners set t1 = t1 + $t1, t2 = t2 + $t2, t3 = t3 + $t3, t4 = t4 + $t4, t5 = t5 + $t5, t6 = t6 + $t6, t7 = t7 + $t7, t8 = t8 + $t8, t9 = t9 + $t9, t10 = t10 + $t10, t11 = t11 + $t11 where wid = $wid and from = $from";
+		return mysql_query($q, $this->connection) or die(mysql_error());
+	}
+	
+	function getPrisoners($wid) {
+		$q = "SELECT * FROM " . TB_PREFIX . "prisoners where wref = $wid";
+		$result = mysql_query($q, $this->connection);
+		return $this->mysql_fetch_all($result);
+	}
+
+	function getPrisoners2($wid,$from) {
+		$q = "SELECT * FROM " . TB_PREFIX . "prisoners where wref = $wid and from = $from";
+		$result = mysql_query($q, $this->connection);
+		return $this->mysql_fetch_all($result);
+	}
+	
+	function getPrisonersByID($id) {
+		$q = "SELECT * FROM " . TB_PREFIX . "prisoners where id = $id";
+		$result = mysql_query($q, $this->connection);
+		return mysql_fetch_array($result);
+	}
+	
+	function getPrisoners3($from) {
+		$q = "SELECT * FROM " . TB_PREFIX . "prisoners where from = $from";
+		$result = mysql_query($q, $this->connection);
+		return $this->mysql_fetch_all($result);
+	}
+	
+	function deletePrisoners($id) {
+		$q = "DELETE from " . TB_PREFIX . "prisoners where id = '$id'";
+		mysql_query($q, $this->connection);
+	}
+};
 
         $database = new MYSQL_DB;
 

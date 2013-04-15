@@ -30,6 +30,7 @@ date_default_timezone_set('Asia/Tehran');
         		$text = file_get_contents("data/constant_format.tpl");
 				$text = preg_replace("'%TRADERCAP%'", $_POST['tradercap'], $text);
 				$text = preg_replace("'%CRANNYCAP%'", $_POST['crannycap'], $text);
+				$text = preg_replace("'%TRAPPERCAP%'", $_POST['trappercap'], $text);
         		$text = preg_replace("'%UTRACK%'", $_POST['trackusers'], $text);
         		$text = preg_replace("'%UTOUT%'", $_POST['timeout'], $text);
         		$text = preg_replace("'%AUTOD%'", $_POST['autodel'], $text);

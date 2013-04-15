@@ -91,6 +91,8 @@ Reply:
     <form method="post" name="abform" action="nachrichten.php" accept-charset="UTF-8">
  <input type="hidden" name="a" value="3e9" />
  <input type="hidden" name="t" value="1" />
+ <input type="hidden" name="ft" value="m7" />
+ <input type="hidden" name="myid" value="<?php echo $session->uid; ?>" />
  <input type="hidden" id="copy_receiver" name="copy_receiver" value="" />
  <input type="hidden" id="copy_subject" name="copy_subject" value="" />
  <input type="hidden" id="copy_igm" name="copy_igm" value="" />
@@ -98,7 +100,9 @@ Reply:
  <input type="hidden" name="sbmvalue" value="" />
 	<div class="friendListContainer">
 	<table cellpadding="1" cellspacing="1" id="friendlist">
-<?php for($i=0;$i<20;$i++) {
+<?php 
+$user = $database->getUserArray($session->uid, 1);
+for($i=0;$i<20;$i++) {
 if($user['friend'.$i] == 0 && $user['friend'.$i.'wait'] == 0){
 if(is_int($i/2)){ echo "<tr>"; } ?><td class="end"></td>
   <td class="pla">
@@ -150,9 +154,11 @@ if(is_int($i/2)){ echo "<tr>"; } ?><td class="end"><a href="nachrichten.php?delf
 if(!is_int($i/2)){ echo "</tr>"; }else{ echo "<td></td>";}
 }
   }} ?>
-  </tr></table></form>
+  </tr></table>
 		<div class="clear"></div>
 	</div>
+</br><center><button type="submit" value="Elküld" name="s1" id="s1" tabindex="4"><div class="button-container"><div class="button-position"><div class="btl"><div class="btr"><div class="btc"></div></div></div><div class="bml"><div class="bmr"><div class="bmc"></div></div></div><div class="bbl"><div class="bbr"><div class="bbc"></div></div></div></div><div class="button-contents">save</div></div></button></center>
+</form>
 </div></div>
 <script type="text/javascript">
 	Travian.Translation.add(

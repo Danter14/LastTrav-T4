@@ -1,6 +1,7 @@
 <html>
 	<head>
 		<title><?php echo SERVER_NAME ?></title>
+		<link rel="shortcut icon" href="favicon.ico" />
 		<meta http-equiv="cache-control" content="max-age=0" />
 		<meta http-equiv="pragma" content="no-cache" />
 		<meta http-equiv="expires" content="0" />

@@ -8,9 +8,8 @@ $uprequire = $building->resourceRequired($id,$bid);
 	<a href="#" onclick="return Travian.Game.iPopup(36,4);" class="build_logo">
 		<img class="building big white g36" src="img/x.gif" alt="تله ساز">
 	</a>
-	The trapper protects your village with well hidden traps. Enemies can be imprisoned and won't be able to harm your village any more. Troops imprisoned in traps eat crop from the village they originally belong to. 
+	The trapper protects your village with well hidden traps. This means that unwary enemies can be imprisoned and won't be able to harm your village any more..</div>
 
-One trapper can give you a maximum of 400 traps. </div>
 <div id="contract" class="contract contractNew contractWrapper">
 	<div class="contractText">Cost:</div>
 	<div class="contractCosts">

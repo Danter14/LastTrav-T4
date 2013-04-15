@@ -109,6 +109,7 @@ class Account {
 					setcookie("COOKEMAIL",$_POST['email'],time()+COOKIE_EXPIRE,COOKIE_PATH);
 	
 					$database->updateUserField($uid,"act","",1);
+					$database->updateUserField($uid,"invited",$_POST['invited'],1);
 					$this->generateBase($_POST['kid'],$uid,$_POST['name']);
 					$database->modifyUnit($database->getVFH($uid), 'hero', 1, 1);
 					$database->modifyHero2('wref', $database->getVFH($uid), $uid, 0);

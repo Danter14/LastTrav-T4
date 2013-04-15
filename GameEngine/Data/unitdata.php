@@ -59,7 +59,7 @@ $u47=array('atk'=>250,'di'=>120,'dc'=>150,'wood'=>225,'clay'=>255,'iron'=>230,'c
 $u48=array('atk'=>60,'di'=>45,'dc'=>10,'wood'=>1500,'clay'=>760,'iron'=>890,'crop'=>390,'pop'=>0,'speed'=>0,'time'=>0,'cap'=>0);
 $u49=array('atk'=>80,'di'=>50,'dc'=>50,'wood'=>37000,'clay'=>30000,'iron'=>32000,'crop'=>33500,'pop'=>0,'speed'=>0,'time'=>0,'cap'=>0);
 $u50=array('atk'=>30,'di'=>40,'dc'=>40,'wood'=>8000,'clay'=>8250,'iron'=>8500,'crop'=>5505,'pop'=>0,'speed'=>0,'time'=>0,'cap'=>0);
-
+$u99=array('atk'=>0,'di'=>0,'dc'=>0,'wood'=>20,'clay'=>30,'iron'=>10,'crop'=>20,'speed'=>0,'pop'=>0,'time'=>600,'cap'=>0);
 // Hero data base values and increase per point
 $h1=array('atk'=>50,'atkp'=>54,'di'=>60,'dip'=>49,'dc'=>85,'dcp'=>62.5);
 $h2=array('atk'=>40,'atkp'=>46.5,'di'=>100,'dip'=>75.5,'dc'=>60,'dcp'=>47.5);

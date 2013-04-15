@@ -45,6 +45,7 @@ include "Templates/html.tpl";
 <?php if(REG_OPEN == true){ ?>
 		<h4 class="round"><?php echo REGISTER_USERINFO; ?></h4>
 		<form name="snd" method="post" action="anmelden.php">
+		<input type="hidden" name="invited" value="<?php echo filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT); ?>" />
 		<input type="hidden" name="ft" value="a1" />
 			<table cellpadding="1" cellspacing="1" id="sign_input" class="transparent">
 			<tbody>

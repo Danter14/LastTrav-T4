@@ -33,6 +33,10 @@ echo "<div class=\"headline\"><span class=\"f10 c5\">Error creating constant.php
 			<td><input type="text" dir="ltr" class="text" name="tradercap" id="tradercap" value="1"></td>
 		</tr>
 		<tr class="hover">
+			<td>Trapper capacity (1 = 1x...)</td>
+			<td><input type="text" dir="ltr" class="text" name="trappercap" id="trappercap" value="1"></td>
+		</tr>
+		<tr class="hover">
 			<td>Cranny capacity</td>
 			<td><input type="text" dir="ltr" class="text" name="crannycap" id="crannycap" value="1"></td>
 		</tr>

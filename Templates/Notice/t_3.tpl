@@ -2,7 +2,7 @@
 <?php
 $noticeClass = array("Scout Report","Won as attacker without losses","Won as attacker with losses","Lost as attacker with losses","Won as defender without losses","Won as defender with losses","Lost as defender with losses","Lost as defender without losses","Reinforcement arrived","","Wood Delivered","Clay Delivered","Iron Delivered","Crop Delivered","","Won as defender without losses","Won as defender with losses","Lost as defender with losses","Won scouting as attacker","Lost scouting as attacker","Won scouting as defender","Lost scouting as defender","Scout Report");
 $prefix = "".TB_PREFIX."ndata";
-$limit2 = "and (ntype = 0 or ntype = 9 or ntype = 15)";
+$limit2 = "and (ntype = 0 or ntype = 9 or ntype >= 15)";
 $sql = mysql_query("SELECT * FROM $prefix WHERE uid = $session->uid and archive = 0 $limit2 and del = 0 ORDER BY time DESC");
 $query = mysql_num_rows($sql);
 
@@ -162,7 +162,9 @@ while($row = mysql_fetch_array($sql2)){
     if($type==9){
     	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport21\" alt=\"".$noticeClass[$ntype]."\" title=\"".$noticeClass[$ntype]."\" /> <div>";
     }else{
-    	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport$type\" alt=\"".$noticeClass[$type]."\" title=\"".$noticeClass[$type]."\" /> <div>";
+		$newtype = $type;
+		if($type >= 15) $newtype = $type - 11;
+    	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport$newtype\" alt=\"".$noticeClass[$type]."\" title=\"".$noticeClass[$type]."\" /> <div>";
     }
 
 if($type==1 || $type==2 || $type==5 || $type==6 || $type==7){

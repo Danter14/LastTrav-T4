@@ -250,6 +250,7 @@ define("U27","Ram");
 define("U28","Trebuchet");
 define("U29","Chieftain");
 define("U30","Settler");
+define("U99","Trap");
 
 //NATURE UNITS
 define("U31","Rat");
@@ -517,6 +518,7 @@ define("REPORT_ATK_AGAIN","return on the attack");
 define("REPORT_TROOPS","Troops");
 define("REPORT_REINF","Reinforecment");
 define("REPORT_CASUALTIES","Casualties");
+define("REPORT_PRISONERS","Prisoners");
 define("REPORT_INFORMATION","information");
 define("REPORT_BOUNTY","Bounty");
 define("REPORT_CLOCK","Time");

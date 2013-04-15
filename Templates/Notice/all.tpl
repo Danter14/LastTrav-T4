@@ -159,7 +159,9 @@ while($row = mysql_fetch_array($sql2)){
     if($type==9){
     	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport21\" alt=\"".$noticeClass[$ntype]."\" title=\"".$noticeClass[$ntype]."\" /> <div>";
     }else{
-    	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport$type\" alt=\"".$noticeClass[$type]."\" title=\"".$noticeClass[$type]."\" /> <div>";
+		$newtype = $type;
+		if($type >= 15) $newtype = $type - 11;
+    	$outputList .= "<img src=\"img/x.gif\" class=\"iReport iReport$newtype\" alt=\"".$noticeClass[$type]."\" title=\"".$noticeClass[$type]."\" /> <div>";
     }
 
 if($type==1 || $type==2 || $type==5 || $type==6 || $type==7){

@@ -178,37 +178,6 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%farmlist` (
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `%prefix%raidlist`
---
-
-CREATE TABLE IF NOT EXISTS `%PREFIX%raidlist` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `lid` int(11) NOT NULL,
-  `towref` int(11) unsigned NOT NULL,
-  `x` int(11) NOT NULL,
-  `y` int(11) NOT NULL,
-  `distance` varchar(5) NOT NULL DEFAULT '0',
-  `t1` int(11) unsigned NOT NULL,
-  `t2` int(11) unsigned NOT NULL,
-  `t3` int(11) unsigned NOT NULL,
-  `t4` int(11) unsigned NOT NULL,
-  `t5` int(11) unsigned NOT NULL,
-  `t6` int(11) unsigned NOT NULL,
-  `t7` int(11) unsigned NOT NULL,
-  `t8` int(11) unsigned NOT NULL,
-  `t9` int(11) unsigned NOT NULL,
-  `t10` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `%prefix%raidlist`
---
-
-
--- --------------------------------------------------------
-
 
 --
 -- Table structure for table `%PREFIX%allimedal`
@@ -1249,6 +1218,68 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%online` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `%PREFIX%prisoners`
+--
+
+CREATE TABLE IF NOT EXISTS `%PREFIX%prisoners` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `wref` int(11) unsigned NOT NULL,
+  `from` int(11) unsigned NOT NULL,
+  `t1` int(11) unsigned NOT NULL,
+  `t2` int(11) unsigned NOT NULL,
+  `t3` int(11) unsigned NOT NULL,
+  `t4` int(11) unsigned NOT NULL,
+  `t5` int(11) unsigned NOT NULL,
+  `t6` int(11) unsigned NOT NULL,
+  `t7` int(11) unsigned NOT NULL,
+  `t8` int(11) unsigned NOT NULL,
+  `t9` int(11) unsigned NOT NULL,
+  `t10` int(11) unsigned NOT NULL,
+  `t11` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `%PREFIX%prisoners`
+--
+
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `%prefix%raidlist`
+--
+
+CREATE TABLE IF NOT EXISTS `%PREFIX%raidlist` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `lid` int(11) NOT NULL,
+  `towref` int(11) unsigned NOT NULL,
+  `x` int(11) NOT NULL,
+  `y` int(11) NOT NULL,
+  `distance` varchar(5) NOT NULL DEFAULT '0',
+  `t1` int(11) unsigned NOT NULL,
+  `t2` int(11) unsigned NOT NULL,
+  `t3` int(11) unsigned NOT NULL,
+  `t4` int(11) unsigned NOT NULL,
+  `t5` int(11) unsigned NOT NULL,
+  `t6` int(11) unsigned NOT NULL,
+  `t7` int(11) unsigned NOT NULL,
+  `t8` int(11) unsigned NOT NULL,
+  `t9` int(11) unsigned NOT NULL,
+  `t10` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `%prefix%raidlist`
+--
+
+
+-- --------------------------------------------------------
+
+
+--
 -- Table structure for table `%prefix%research`
 --
 
@@ -1469,6 +1500,8 @@ CREATE TABLE IF NOT EXISTS `%PREFIX%units` (
   `u48` int(11) unsigned NOT NULL DEFAULT '0',
   `u49` int(11) unsigned NOT NULL DEFAULT '0',
   `u50` int(11) unsigned NOT NULL DEFAULT '0',
+  `u99` int(11) unsigned NOT NULL DEFAULT '0',
+  `u99o` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`vref`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

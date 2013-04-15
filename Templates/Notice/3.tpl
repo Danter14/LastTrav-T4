@@ -8,6 +8,11 @@ if(isset($_GET['aid']) && $_GET['aid']==$session->alliance){
     $topic = $message->readingNotice['topic'];
     $time = $message->readingNotice['time'];
 }
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+$class = "units";
+}else{
+$class = "units last";
+}
 ?>
 				<table cellpadding="1" cellspacing="1" id="report_surround">
 				<thead class="theader">
@@ -81,7 +86,7 @@ for($i=3;$i<=12;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[13]."</td>";
     }
 echo "</tr></tbody>";
-echo "<tbody class=\"units last\"><tr><th>".REPORT_CASUALTIES."</th>";
+echo "<tbody class=\"".$class."\"><tr><th>".REPORT_CASUALTIES."</th>";
 for($i=14;$i<=23;$i++) {
 	if($dataarray[$i] == 0) {
     	echo "<td class=\"unit none\">0</td>";
@@ -96,7 +101,24 @@ for($i=14;$i<=23;$i++) {
     else {
     	echo "<td class=\"unit last\">".$dataarray[24]."</td>";
     }
-
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+echo "</tr></tbody>";
+echo "<tbody class=\"units last\"><tr><th>".REPORT_PRISONERS."</th>";
+for($i=158;$i<=167;$i++) {
+	if($dataarray[$i] == 0) {
+    	echo "<td class=\"unit none\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit\">".$dataarray[$i]."</td>";
+    }
+}
+	if($dataarray[168] == 0) {
+    	echo "<td class=\"unit none last\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit last\">".$dataarray[168]."</td>";
+    }
+}
 echo "</tr></tbody>";
 
 ?>

@@ -221,6 +221,7 @@ define("U27","دژکوب");
 define("U28","منجنیق");
 define("U29","رئیس قبیله");
 define("U30","مهاجر");
+define("U99","دام");
 
 //NATURE UNITS
 define("U31","موش");

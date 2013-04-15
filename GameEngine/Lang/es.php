@@ -173,6 +173,7 @@ define("U27","Ariete");
 define("U28","Trebuchet");
 define("U29","Jefe Galo");
 define("U30","Colono");
+define("U99","Trampa");
 
 //NATURE UNITS
 define("U31","Rata");

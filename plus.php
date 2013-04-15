@@ -100,7 +100,11 @@ if ($id == "") {
 	include("Templates/Plus/1.tpl");
 }else{
 	if($id<=6){
+	if (isset($_GET['mail']) && $id == 5){
+		include("Templates/Plus/invite.tpl");
+	}else{
 		include("Templates/Plus/".$id.".tpl");
+	}
 	}else{
 		$golds = $database->getUserArray($session->username, 0);
 		if($id == 7){

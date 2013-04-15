@@ -319,6 +319,15 @@ class Battle {
 			// Berekening van de Basic defence bonus "Residence" 
 			$dp += ((2*(pow($residence,2)))*(pow($factor,$def_wall)));
 			$cdp += ((2*(pow($residence,2)))*(pow($factor,$def_wall)));
+			if($def_tribe == 1){
+			$bonus = 10;
+			}else if($def_tribe == 2){
+			$bonus = 6;
+			}else if($def_tribe == 3){
+			$bonus = 8;
+			}
+			$dp += $def_wall*$bonus;
+			$cdp += $def_wall*$bonus;
 		}
 		else 
         {
