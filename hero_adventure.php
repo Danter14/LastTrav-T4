@@ -147,20 +147,24 @@ if($isoasis){
 switch($type) {
 case 1:
 case 2:
+$tname = "village natars";
+break;
 case 3:
+case 4:
 $tname =  "forest";
 break;
-case 4:
 case 5:
 case 6:
 $tname =  "field";
 break;
 case 7:
 case 8:
+$tname = "lake";
+break;
 case 9:
+case 10:
 $tname =  "mountain";
 break;
-case 10:
 case 11:
 case 12:
 $tname =  "sea";
