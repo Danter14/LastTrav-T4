@@ -410,17 +410,17 @@ include "Templates/Auction/alt.tpl";
 		$deadTitle = '';
 	}
 	if($btype == 9){
-	$amount = '('.$num-$type.') ';
+	$amount = '('.$num.') ';
 	$outputList .= "<div id=\"inventory_".$inv."\" class=\"inventory draggable\">";
 	$outputList .= "<div id=\"item_".$id."\" title=\"".$amount."".$name."||".$deadTitle."".$title."\" class=\"item item_114".$dis."\" style=\"position:relative;left:0px;top:0px;\">";
-	$outputList .= "<div class=\"amount\">".($num-$type)."</div>";
+	$outputList .= "<div class=\"amount\">".($num)."</div>";
 	$outputList .= "</div>";
 	$outputList .= '</div>';
 	}else{
 	if($num==1){$amount = '';}else{$amount = '('.$num.') ';}
 	$outputList .= "<div id=\"inventory_".$inv."\" class=\"inventory draggable\">";
 	$outputList .= "<div id=\"item_".$id."\" title=\"".$amount."".$name."||".$deadTitle."".$title."\" class=\"item item_".$item."".$dis."\" style=\"position:relative;left:0px;top:0px;\">";
-	$outputList .= "<div class=\"amount\">".$num."</div>";
+	$outputList .= "<div class=\"amount\">".($num)."</div>";
 	$outputList .= "</div>";
 	$outputList .= '</div>';
 	$inv++;	
