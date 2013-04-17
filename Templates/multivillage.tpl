@@ -33,7 +33,7 @@
     }
     $gid = $_GET['gid'];
 	echo "<li class=\"entry ".$village_attack."".$select."\" title=\"".$village_title."\">
-    <a id=\"".$sid."\" title=\"".$database->getVillageField($session->villages[$i-1],'name')." (".$coorproc['y']."|".$coorproc['x'].")\" href=\"?newdid=".$session->villages[$i-1]."".$vill."\" class=\"".$select."\">".$database->getVillageField($session->villages[$i-1],'name')."</a></li>";
+    <a id=\"".$sid."\" title=\"".$database->getVillageField($session->villages[$i-1],'name')." (".$coorproc['x']."|".$coorproc['y'].")\" href=\"?newdid=".$session->villages[$i-1]."".$vill."\" class=\"".$select."\">".$database->getVillageField($session->villages[$i-1],'name')."</a></li>";
 	}
     	?>
 		
