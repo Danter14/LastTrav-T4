@@ -1,4 +1,4 @@
-﻿
+
 <div id="content" class="map">
 
 <div class="t2"></div>
@@ -6,59 +6,61 @@
 <?php
 if(isset($_GET['d']) && isset($_GET['c'])) {
 	if($generator->getMapCheck($_GET['d']) == $_GET['c']) {
-        $wref = $_GET['d'];
-        $coor = $database->getCoor($wref);
-        $x = $coor['x'];
-        $y = $coor['y'];
+		$wref = $_GET['d'];
+		$coor = $database->getCoor($wref);
+		$x = $coor['x'];
+		$y = $coor['y'];
 	}
 }
 else if(isset($_GET['x']) && isset($_GET['y'])) {
-    $x = $_GET['x'];
-    $y = $_GET['y'];
-    $bigmid = $generator->getBaseID($x,$y);
+	$x = $_GET['y'];
+	$y = $_GET['x'];
+	$bigmid = $generator->getBaseID($y,$x);
 }
 else if(isset($_POST['xp']) && isset($_POST['yp'])){
-	$x = $_POST['xp'];
-    $y = $_POST['yp'];
-    $bigmid = $generator->getBaseID($x,$y);
+	$x = $_POST['yp'];
+	$y = $_POST['xp'];
+	$bigmid = $generator->getBaseID($y,$x);
 }
 else {
-    $y = $village->coor['y'];
+	$y = $village->coor['y'];
 	$x = $village->coor['x'];
-    $bigmid = $village->wid;
+	$bigmid = $village->wid;
 }
 
-$south1 = ($y-1) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX : $y-1;
-$south2 = ($y-2) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX-1 : $y-2;
-$south3 = ($y-3) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX-2 : $y-3;
+$south1 = ($y-1) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX : $x-1;
+$south2 = ($y-2) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX-1 : $x-2;
+$south3 = ($y-3) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX-2 : $x-3;
+$south4 = ($y-4) < -WORLD_MAX? $y+WORLD_MAX+WORLD_MAX-3 : $x-4;
 
-$north1 = ($y+1) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX : $y+1;
-$north2 = ($y+2) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX+1 : $y+2;
-$north3 = ($y+3) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX+2 : $y+3;
+$north1 = ($y+1) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX : $x+1;
+$north2 = ($y+2) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX-1 : $x+2;
+$north3 = ($y+3) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX-2 : $x+3;
+$north4 = ($y+4) > WORLD_MAX? $y-WORLD_MAX-WORLD_MAX-3 : $x+4;
 
-$west1 = ($x-1) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX : $x-1;
-$west2 = ($x-2) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-1 : $x-2;
-$west3 = ($x-3) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-2 : $x-3;
-$west4 = ($x-4) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-3 : $x-4;
+$west1 = ($x-1) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX : $y-1;
+$west2 = ($x-2) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-1 : $y-2;
+$west3 = ($x-3) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-2 : $y-3;
+$west4 = ($x-4) < -WORLD_MAX? $x+WORLD_MAX+WORLD_MAX-3 : $y-4;
 
-$east1 = ($x+1) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX : $x+1;
-$east2 = ($x+2) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX+1 : $x+2;
-$east3 = ($x+3) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX+2 : $x+3;
-$east4 = ($x+4) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX+3 : $x+4;
+$east1 = ($x+1) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX : $y+1;
+$east2 = ($x+2) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX-1 : $y+2;
+$east3 = ($x+3) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX-2 : $y+3;
+$east4 = ($x+4) > WORLD_MAX? $x-WORLD_MAX-WORLD_MAX-3 : $y+4;
 
-$xarray = array($west4,$west3,$west2,$west1,$x,$east1,$east2,$east3,$east4);
-$yarray = array($north3,$north2,$north1,$y,$south1,$south2,$south3);
+$xarray = array($west4,$west3,$west2,$west1,$y,$east1,$east2,$east3,$east4);
+$yarray = array($north3,$north2,$north1,$x,$south1,$south2,$south3);
 
 
 $maparray = array();
-$ycount = 0;
+$xcount = 0;
 for($i=0;$i<=8;$i++) {
-    if($ycount != 7) {
-    	array_push($maparray,$database->getMInfo($generator->getBaseID($xarray[$i],$yarray[$ycount])));
-    	if($i==8) {
-    		$i = -1;
-    		$ycount +=1;
-    	}
+	if($xcount != 9) {
+		array_push($maparray,$database->getMInfo($generator->getBaseID($yarray[$xcount],$xarray[$i])));
+		if($i==8) {
+			$i = -1;
+			$xcount +=1;
+		}
 	}
 }
 echo "<h1 dir=\"rtl\">Map</h1>";
