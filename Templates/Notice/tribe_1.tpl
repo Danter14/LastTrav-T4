@@ -23,6 +23,7 @@ $start=1;
     <tbody class="units"><tr>
     <th class="coords"></th>
 <?php
+if(!$faild){
 for($i=$start;$i<=($start+9);$i++) {
 	if($i==($start+9) && !$dataarray[47]){ $last = ' last'; }else{ $last = ''; }
 	echo "<td class=\"uniticon".$last."\"><img src=\"img/x.gif\" class=\"unit u$i\" title=\"".$technology->getUnitName($i)."\" alt=\"".$technology->getUnitName($i)."\" /></td>";
@@ -43,7 +44,6 @@ for($i=37;$i<=46;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[47]."</td>";
     }
 echo "</tr></tbody>";
-
 echo "<tbody class=\"units last\"><th>".REPORT_CASUALTIES."</th>";
 for($i=48;$i<=57;$i++) {
 	if($i==57 && !$dataarray[47]){ $last2 = ' last'; }else{ $last2 = ''; }
@@ -60,6 +60,33 @@ for($i=48;$i<=57;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[58]."</td>";
     }
     }
+}else{
+for($i=$start;$i<=($start+9);$i++) {
+	if($i==($start+9) && !$dataarray[49]){ $last = ' last'; }else{ $last = ''; }
+	echo "<td class=\"uniticon".$last."\"><img src=\"img/x.gif\" class=\"unit u$i\" title=\"".$technology->getUnitName($i)."\" alt=\"".$technology->getUnitName($i)."\" /></td>";
+}
+if($dataarray[49]){
+	echo "<td class=\"uniticon last\"><img src=\"img/x.gif\" class=\"unit uhero\" title=\"".$technology->getUnitName(51)."\" alt=\"".$technology->getUnitName(51)."\" /></td>";
+}
+echo "</tr></tbody><tbody class=\"units\"><tr><th>".REPORT_TROOPS."</th>";
+for($i=39;$i<=48;$i++) {
+	if($i==48 && !$dataarray[49]){ $last = ' last'; }else{ $last = ''; }
+    	echo "<td class=\"unit none".$last."\">?</td>";
+}
+	if($dataarray[49]) {
+    	echo "<td class=\"unit last none\">?</td>";
+    }
+echo "</tr></tbody>";
+
+echo "<tbody class=\"units last\"><th>".REPORT_CASUALTIES."</th>";
+for($i=50;$i<=59;$i++) {
+	if($i==59 && !$dataarray[49]){ $last2 = ' last'; }else{ $last2 = ''; }
+    	echo "<td class=\"unit none".$last2."\">?</td>";
+}
+	if($dataarray[49]) {
+    	echo "<td class=\"unit none last\">?</td>";
+    }
+}
 echo "</tr></tbody>";
 ?>
 

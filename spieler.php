@@ -6,7 +6,19 @@ $profile->procProfile($_POST);
 $profile->procSpecial($_GET);
 if(isset($_GET['newdid'])) {
 	$_SESSION['wid'] = $_GET['newdid'];
+	if(isset($_GET['s'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?s=".preg_replace("/[^a-zA-Z0-9_-]/","",$_GET['s']));
+	}else if(isset($_GET['uid'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?uid=".preg_replace("/[^a-zA-Z0-9_-]/","",$_GET['uid']));
+	}else{
 	header("Location: ".$_SERVER['PHP_SELF']);
+}
+}
+if(!isset($_GET['s']) && !isset($_GET['uid'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?uid=".preg_replace("/[^a-zA-Z0-9_-]/","",$session->uid));
+}
+if(isset($_GET['s'])){
+$automation->isWinner();
 }
 include "Templates/html.tpl";
 ?>

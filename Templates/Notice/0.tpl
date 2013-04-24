@@ -8,6 +8,22 @@ if(isset($_GET['aid']) && $_GET['aid']==$session->alliance){
     $topic = $message->readingNotice['topic'];
     $time = $message->readingNotice['time'];
 }
+echo $dataarray[94];
+$trap = $faild = false;
+if($dataarray[154] != '?'){ //if attack didn't fail
+$trapstart = 159;
+}else{
+$faild = true;
+$trapstart = 158;
+}
+for($i=$trapstart;$i<=$trapstart+9;$i++){
+if($dataarray[$i] != 0){ $trap = true; }
+}
+if($trap){
+$class = "units";
+}else{
+$class = "units last";
+}
 ?>
 				<table cellpadding="1" cellspacing="1" id="report_surround">
 				<thead class="theader">
@@ -89,7 +105,7 @@ for($i=3;$i<=12;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[13]."</td>";
     }
 echo "</tr></tbody>";
-echo "<tbody class=\"units last\"><tr><th>".REPORT_CASUALTIES."</th>";
+echo "<tbody class=\"".$class."\"><tr><th>".REPORT_CASUALTIES."</th>";
 for($i=14;$i<=23;$i++) {
 	if($dataarray[$i] == 0) {
     	echo "<td class=\"unit none\">0</td>";
@@ -105,12 +121,30 @@ for($i=14;$i<=23;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[24]."</td>";
     }
 
+if($trap){
 echo "</tr></tbody>";
+echo "<tbody class=\"units last\"><tr><th>".REPORT_PRISONERS."</th>";
+for($i=$trapstart;$i<=$trapstart+9;$i++) {
+	if($dataarray[$i] == 0) {
+    	echo "<td class=\"unit none\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit\">".$dataarray[$i]."</td>";
+    }
+}
+	if($dataarray[$trapstart+10] == 0) {
+    	echo "<td class=\"unit none last\">0</td>";
+    }
+    else {
+    	echo "<td class=\"unit last\">".$dataarray[$trapstart+10]."</td>";
+    }
+}
+
 if ($dataarray[151]!='' and $dataarray[152]!=''){ //ram
 
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
 	<img class="unit u<?php echo $dataarray[151]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[151]]; ?>" title="<?php echo $technology->unarray[$dataarray[151]]; ?>" />
 	<?php echo $dataarray[152]; ?>
     </td></tr></tbody>
@@ -118,7 +152,7 @@ if ($dataarray[151]!='' and $dataarray[152]!=''){ //ram
 if ($dataarray[153]!='' and $dataarray[154]!=''){ //cata
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
 	<img class="unit g<?php echo $dataarray[153]; ?>Icon" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[153]]; ?>" title="<?php echo $technology->unarray[$dataarray[153]]; ?>" />
 	<?php echo $dataarray[154]; ?>
     </td></tr></tbody>
@@ -126,7 +160,7 @@ if ($dataarray[153]!='' and $dataarray[154]!=''){ //cata
 if ($dataarray[155]!='' and $dataarray[156]!=''){ //chief
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
 	<img class="unit u<?php echo $dataarray[155]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[155]]; ?>" title="<?php echo $technology->unarray[$dataarray[155]]; ?>" />
 	<?php echo $dataarray[156]; ?>
     </td></tr></tbody>
@@ -134,8 +168,15 @@ if ($dataarray[155]!='' and $dataarray[156]!=''){ //chief
 <?php if ($dataarray[157]!='' and $dataarray[158]!=''){ //spy
 ?>
     <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
-    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:right" colspan="11">
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
     <?php echo $dataarray[158]; ?>
+    </td></tr></tbody>
+<?php }
+if ($dataarray[$trapstart+11]!='' and $dataarray[$trapstart+11]!=''){ //release prisoners
+?>
+    <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
+    <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
+    <?php echo $dataarray[$trapstart+11]; ?>
     </td></tr></tbody>
 <?php } ?>
 

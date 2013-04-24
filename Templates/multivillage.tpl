@@ -14,7 +14,7 @@
                 }
 				if($aantal > 0){
 					$village_attack = "attack ";
-					$village_title = "A falu támadás alatt áll: ".$aantal;
+					$village_title = "attacks on this village: ".$aantal;
 				} else {
 					$village_attack = "";
 					$village_title = htmlspecialchars($returnVillageArray[$i-1]['name']);
@@ -24,10 +24,36 @@
     $coorproc = $database->getCoor($session->villages[$i-1]);
     if(isset($_GET['id'])){
     	$vill = "&id=".$_GET['id'];
-    }elseif(isset($_GET['gid'])){
+    }else if(isset($_GET['gid'])){
     	$vill = "&gid=".$_GET['gid'];
-    }elseif(isset($_GET['id'])==39 && $_GET['t']){
-    	$vill = "&id=39&t=".$_GET['t'];
+    }else if(isset($_GET['w'])) {
+    	$vill = "&w=".$_GET['w'];
+	}else if(isset($_GET['r'])) {
+    	$vill = "&r=".$_GET['r'];
+	}else if(isset($_GET['o'])) {
+    	$vill = "&o=".$_GET['o'];
+	}else if(isset($_GET['z'])) {
+    	$vill = "&z=".$_GET['z'];
+	}else if(isset($_GET['s'])) {
+    	$vill = "&s=".$_GET['s'];
+	}else if(isset($_GET['c'])) {
+    	$vill = "&c=".$_GET['c'];
+	}else if(isset($_GET['t'])) {
+    	$vill = "&t=".$_GET['t'];
+	}else if(isset($_GET['d'])) {
+    	$vill = "&d=".$_GET['d'];
+	}else if(isset($_GET['aid'])) {
+    	$vill = "&aid=".$_GET['aid'];
+	}else if(isset($_GET['uid'])) {
+    	$vill = "&uid=".$_GET['uid'];
+	}else if(isset($_GET['tid'])) {
+    	$vill = "&tid=".$_GET['tid'];
+	}else if(isset($_GET['vill']) && isset($_GET['id'])) {
+    	$vill = "&id=".$_GET['id']."&vill=".$_GET['vill'];
+	}else if(isset($_GET['t']) && isset($_GET['id'])) {
+    $vill = "&id=".$_GET['id']."&t=".$_GET['t'];
+	}else if(isset($_GET['x']) && isset($_GET['y'])) {
+    	$vill = "&x=".$_GET['x']."&y=".$_GET['y'];
     }else{
     	$vill = "";
     }

@@ -6,7 +6,21 @@ include("GameEngine/Units.php");
 $start = $generator->pageLoadTimeStart();
 if(isset($_GET['newdid'])) {
 	$_SESSION['wid'] = $_GET['newdid'];
+if(isset($_GET['w'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?w=".$_GET['w']);
+}
+else if(isset($_GET['r'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?r=".$_GET['r']);
+}
+else if(isset($_GET['o'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?o=".$_GET['o']);
+}
+else if(isset($_GET['z'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?z=".$_GET['z']);
+}
+else if($_GET['id']!=0){
 	header("Location: ".$_SERVER['PHP_SELF']);
+}
 }
 else {
 $building->procBuild($_GET);
@@ -39,6 +53,7 @@ if(isset($_GET['o'])) {
     $checked  ="checked=checked";
 }
 	$process = $units->procUnits($_POST);
+	$automation->isWinner();
 include "Templates/html.tpl";
 ?>
 

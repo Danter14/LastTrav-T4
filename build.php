@@ -138,6 +138,9 @@ if (isset($_POST['h']) && $_POST['a'] == 'adventure'){
 }elseif (isset($_POST['a']) == 533374 && isset($_POST['id']) == 39){  
 	$units->Settlers($_POST);
 }
+if(isset($_GET['id'])){
+$automation->isWinner();
+}
 include "Templates/html.tpl";
 ?>
 <body class="v35 gecko build"> 

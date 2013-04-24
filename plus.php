@@ -6,11 +6,16 @@ if(isset($_GET['ok'])){
 	$database->updateUserField($session->username,'ok','0','0'); $_SESSION['ok'] = '0'; }
 if(isset($_GET['newdid'])) {
 	$_SESSION['wid'] = $_GET['newdid'];
+	if(isset($_GET['id'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?id=".$_GET['id']);
+	}else{
 	header("Location: ".$_SERVER['PHP_SELF']);
+	}
 }
 else {
 	$building->procBuild($_GET);
 }
+$automation->isWinner();
 include "Templates/html.tpl";
 ?>
 <body class="v35 webkit chrome plus">

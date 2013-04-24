@@ -4,8 +4,12 @@ include("GameEngine/Village.php");
 $start = $generator->pageLoadTimeStart();
 if(isset($_GET['rank'])){ $_POST['rank']==$_GET['rank']; }
 if(isset($_GET['newdid'])) {
-    $_SESSION['wid'] = $_GET['newdid'];
-    header("Location: ".$_SERVER['PHP_SELF']);
+	$_SESSION['wid'] = $_GET['newdid'];
+	if(isset($_GET['tid'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?tid=".$_GET['tid']);
+	}else{
+	header("Location: ".$_SERVER['PHP_SELF']);
+	}
 }
 include "Templates/html.tpl";
 ?>

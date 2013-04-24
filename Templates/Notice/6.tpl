@@ -8,7 +8,7 @@ if(isset($_GET['aid']) && $_GET['aid']==$session->alliance){
     $topic = $message->readingNotice['topic'];
     $time = $message->readingNotice['time'];
 }
-if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0){
 $class = "units";
 }else{
 $class = "units last";
@@ -110,7 +110,7 @@ for($i=14;$i<=23;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[24]."</td>";
     }
 	
-if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0 or $dataarray[168] != 0){
+if($dataarray[158] != 0 or $dataarray[159] != 0 or $dataarray[160] != 0 or $dataarray[161] != 0 or $dataarray[162] != 0 or $dataarray[163] != 0 or $dataarray[164] != 0 or $dataarray[165] != 0 or $dataarray[166] != 0 or $dataarray[167] != 0){
 echo "</tr></tbody>";
 echo "<tbody class=\"units last\"><tr><th>".REPORT_PRISONERS."</th>";
 for($i=158;$i<=167;$i++) {
@@ -130,38 +130,38 @@ for($i=158;$i<=167;$i++) {
 }
 
 echo "</tr></tbody>";
-if ($dataarray[150]!='' and $dataarray[151]!=''){ //ram
+if ($dataarray[151]!='' and $dataarray[152]!=''){ //ram
 
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
     <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
-	<img class="unit u<?php echo $dataarray[150]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[150]]; ?>" title="<?php echo $technology->unarray[$dataarray[150]]; ?>" />
-	<?php echo $dataarray[151]; ?>
+	<img class="unit u<?php echo $dataarray[151]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[151]]; ?>" title="<?php echo $technology->unarray[$dataarray[151]]; ?>" />
+	<?php echo $dataarray[152]; ?>
     </td></tr></tbody>
 <?php } 
-if ($dataarray[152]!='' and $dataarray[153]!=''){ //cata
+if ($dataarray[153]!='' and $dataarray[154]!=''){ //cata
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
     <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
-	<img class="unit g<?php echo $dataarray[152]; ?>Icon" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[152]]; ?>" title="<?php echo $technology->unarray[$dataarray[152]]; ?>" />
-	<?php echo $dataarray[153]; ?>
+	<img class="unit g<?php echo $dataarray[153]; ?>Icon" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[153]]; ?>" title="<?php echo $technology->unarray[$dataarray[153]]; ?>" />
+	<?php echo $dataarray[154]; ?>
     </td></tr></tbody>
 <?php }
-if ($dataarray[154]!='' and $dataarray[155]!=''){ //chief
+if ($dataarray[155]!='' and $dataarray[156]!=''){ //chief
 ?>
 	<tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
     <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
-	<img class="unit u<?php echo $dataarray[154]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[154]]; ?>" title="<?php echo $technology->unarray[$dataarray[154]]; ?>" />
-	<?php echo $dataarray[155]; ?>
+	<img class="unit u<?php echo $dataarray[155]; ?>" src="img/x.gif" alt="<?php echo $technology->unarray[$dataarray[155]]; ?>" title="<?php echo $technology->unarray[$dataarray[155]]; ?>" />
+	<?php echo $dataarray[156]; ?>
     </td></tr></tbody>
 <?php } ?>
-<?php if ($dataarray[156]!='' and $dataarray[157]!=''){ //spy
+<?php if ($dataarray[157]!='' and $dataarray[158]!=''){ //spy
 ?>
     <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
     <tbody class="goods"><tr><th><?php echo REPORT_INFORMATION; ?></th><td style="text-align:left" colspan="11">
-    <?php echo $dataarray[157]; ?>
+    <?php echo $dataarray[158]; ?>
     </td></tr></tbody>
-<?php } 
+<?php }
 if ($dataarray[169]!='' and $dataarray[169]!=''){ //release prisoners
 ?>
     <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>
@@ -169,6 +169,7 @@ if ($dataarray[169]!='' and $dataarray[169]!=''){ //release prisoners
     <?php echo $dataarray[169]; ?>
     </td></tr></tbody>
 <?php } ?>
+
 
 
 <tbody><tr><td class="empty" colspan="12"></td></tr></tbody>

@@ -40,11 +40,6 @@ $timer += 1;
 /* Units send to reinf. (to my town) */
 $units_type = $database->getMovement2("34",$village->wid,1);
 $lala = count($units_type);
-for($i=0;$i<$lala;$i++){
-	if(($units_type[$i]['attack_type']==1)){
-		$lala -= 1;
-    }
-}
 
 	if($lala > 0){
 			foreach($units_type as $receive) {
@@ -125,8 +120,8 @@ $aantal2 = $database->getMovement2(5,$village->wid,0);
 			foreach($aantal2 as $receive) {
 				$action = 'att3';
 				$aclass = 'a3';
-				$title = 'Új falu';
-				$short = 'Új falu';
+				$title = 'Found new village';
+				$short = 'Found new village';
 			}
 			
 		echo '

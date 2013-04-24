@@ -23,6 +23,7 @@ $start=11;
     <tbody class="units"><tr>
     <th class="coords"></th>
 <?php
+if(!$faild){
 for($i=$start;$i<=($start+9);$i++) {
 	if($i==($start+9) && !$dataarray[70]){ $last = ' last'; }else{ $last = ''; }
 	echo "<td class=\"uniticon".$last."\"><img src=\"img/x.gif\" class=\"unit u$i\" title=\"".$technology->getUnitName($i)."\" alt=\"".$technology->getUnitName($i)."\" /></td>";
@@ -60,6 +61,33 @@ for($i=71;$i<=80;$i++) {
     	echo "<td class=\"unit last\">".$dataarray[81]."</td>";
     }
     }
+}else{
+for($i=$start;$i<=($start+9);$i++) {
+	if($i==($start+9) && !$dataarray[72]){ $last = ' last'; }else{ $last = ''; }
+	echo "<td class=\"uniticon".$last."\"><img src=\"img/x.gif\" class=\"unit u$i\" title=\"".$technology->getUnitName($i)."\" alt=\"".$technology->getUnitName($i)."\" /></td>";
+}
+if($dataarray[72]){
+	echo "<td class=\"uniticon last\"><img src=\"img/x.gif\" class=\"unit uhero\" title=\"".$technology->getUnitName(51)."\" alt=\"".$technology->getUnitName(51)."\" /></td>";
+}
+echo "</tr></tbody><tbody class=\"units\"><tr><th>".REPORT_TROOPS."</th>";
+for($i=62;$i<=71;$i++) {
+	if($i==71 && !$dataarray[72]){ $last = ' last'; }else{ $last = ''; }
+    	echo "<td class=\"unit none".$last."\">?</td>";
+}
+	if($dataarray[72]) {
+    	echo "<td class=\"unit last none\">?</td>";
+    }
+echo "</tr></tbody>";
+
+echo "<tbody class=\"units last\"><th>".REPORT_CASUALTIES."</th>";
+for($i=73;$i<=82;$i++) {
+	if($i==82 && !$dataarray[72]){ $last2 = ' last'; }else{ $last2 = ''; }
+    	echo "<td class=\"unit none".$last2."\">?</td>";
+}
+	if($dataarray[72]) {
+    	echo "<td class=\"unit none last\">?</td>";
+    }
+}
 echo "</tr></tbody>";
 ?>
 

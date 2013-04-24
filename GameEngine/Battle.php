@@ -360,11 +360,20 @@ class Battle {
 
 		// Formule voor de berekening van de Moraal
 		if($attpop > $defpop) {
+			if($defpop > 0){
 			if ($rap < $rdp) {
 				$moralbonus = min(1.5, pow($attpop / $defpop, (0.2*($rap/$rdp))));
 			}
 			else {
 				$moralbonus = min(1.5, pow($attpop / $defpop, 0.2));
+			}
+			}else{
+			if ($rap < $rdp) {
+				$moralbonus = min(1.5, pow($attpop, (0.2*($rap/$rdp))));
+			}
+			else {
+				$moralbonus = min(1.5, pow($attpop, 0.2));
+			}
 			}
 		}
 		else {
@@ -380,7 +389,11 @@ class Battle {
 		// Formule voor het berekenen verloren drives
 		// $type = 1 Raid, 0 Normal
 		if($type == 1){
+		if($rap > 0){
 			$holder = pow((($rdp*$moralbonus)/$rap),$Mfactor);
+		}else{
+			$holder = pow(($rdp*$moralbonus),$Mfactor);
+		}
 			$holder = $holder / (1 + $holder);
 			// Attacker
 			$result[1] = $holder;

@@ -17,9 +17,8 @@ class Automation {
 		$isThere = mysql_num_rows($q);
 		if($isThere > 0)
 		{
-		header('Location: /winner.php');
-		}else{
-		## there is no winner
+		header('Location: '.SERVER.'winner.php');
+		die();
 		}
 		}
 
@@ -675,6 +674,9 @@ class Automation {
 					if($indi['type'] == 40 and ($indi['level'] % 5 == 0 or $indi['level'] > 95) and $indi['level'] != 100){
 					$this->startNatarAttack($indi['level'], $indi['wid']);
 					}
+					if($indi['type'] == 40 && $indi['level'] == 100){ //now can't be more than one winners if ww to level 100 is build by 2 users or more on same time
+					mysql_query("TRUNCATE ".TB_PREFIX."bdata");
+					}
 				if($database->getUserField($database->getVillageField($indi['wid'],"owner"),"tribe",0) != 1){
 				$q4 = "UPDATE ".TB_PREFIX."bdata set loopcon = 0 where loopcon = 1 and master = 0 and wid = ".$indi['wid'];
 				$database->query($q4);
@@ -991,6 +993,8 @@ class Automation {
             $isoasis = $database->isVillageOases($data['to']);
             $AttackArrivalTime = $data['endtime']; 
             if ($isoasis == 0){
+			$AttackerID = $database->getUserField($database->getVillageField($data['from'],"owner"),"id",0);
+			$DefenderID = $database->getUserField($database->getVillageField($data['to'],"owner"),"id",0);
             $owntribe = $database->getUserField($database->getVillageField($data['from'],"owner"),"tribe",0);
             $targettribe = $database->getUserField($database->getVillageField($data['to'],"owner"),"tribe",0);
             $ownally = $database->getUserField($database->getVillageField($data['from'],"owner"),"alliance",0);
@@ -1013,7 +1017,7 @@ class Automation {
 						$cannotsend = 1;
 						}
 						}
-						if($evasion == 1 && $capital == 1 && $cannotsend == 0){
+						if($evasion == 1 && $capital == 1 && $cannotsend == 0 && $dataarray[0]['attack_type'] > 2){
 						$totaltroops = 0;
 						for($i=1;$i<=10;$i++){
 						$playerunit += $i;
@@ -1703,23 +1707,23 @@ class Automation {
             if ($type=='3'){
                 if ($rams!='0'){
                     if (isset($empty)){
-                        $info_ram = "".$ram_pic.", دیوار قبلا <b>تخریب شده</b>.";
+                        $info_ram = "".$ram_pic.", There is no wall to destroy.";
                     } else
 
                       if ($battlepart[8]>$battlepart[7]){
-                            $info_ram = "".$ram_pic.", دیوار <b>تخریب شد</b>.";
+                            $info_ram = "".$ram_pic.", Wall destroyed.";
                             $database->setVillageLevel($data['to'],"f".$wallid."",'0');
                             $database->setVillageLevel($data['to'],"f".$wallid."t",'0');
                             $pop=$this->recountPop($data['to']);
 
                     }elseif ($battlepart[8]==0){
                     
-                        $info_ram = "".$ram_pic.",به دیوار آسیبی نرسید.";
+                        $info_ram = "".$ram_pic.", Wall was not damaged.";
                     }else{
             
                         $demolish=$battlepart[8]/$battlepart[7];
                         $totallvl = round(sqrt(pow(($walllevel+0.5),2)-($battlepart[8]*8)));
-                    $info_ram = "".$ram_pic.",دیوار از سطح <b>".$walllevel."</b> به سطح <b>".$totallvl."</b> آسیب دید.";
+                    $info_ram = "".$ram_pic.",Wall damaged from level <b>".$walllevel."</b> to level <b>".$totallvl."</b>.";
                             $database->setVillageLevel($data['to'],"f".$wallid."",$totallvl);
 
                     }                  
@@ -2461,7 +2465,7 @@ $info_cata=" damaged from level <b>".$tblevel."</b> to level <b>".$totallvl."</b
 		}
 
             // When all troops die, sends no info.
-            $data_fail = ''.$from['owner'].','.$from['wref'].','.$owntribe.','.$unitssend_att.','.$unitsdead_att.','.$steal[0].','.$steal[1].','.$steal[2].','.$steal[3].','.$battlepart['bounty'].','.$to['owner'].','.$to['wref'].','.addslashes($to['name']).','.$targettribe.',,,'.$rom.','.$unitssend_def[1].','.$unitsdead_deff[1].','.$ger.','.$unitssend_def[2].','.$unitsdead_deff[2].','.$gal.','.$unitssend_def[3].','.$unitsdead_deff[3].','.$nat.','.$unitssend_def[4].','.$unitsdead_deff[4].','.$natar.','.$unitssend_def[5].','.$unitsdead_deff[5].',,,'.$unitstraped_att;
+            $data_fail = ''.$from['owner'].','.$from['wref'].','.$owntribe.','.$unitssend_att.','.$unitsdead_att.','.$steal[0].','.$steal[1].','.$steal[2].','.$steal[3].','.$battlepart['bounty'].','.$to['owner'].','.$to['wref'].','.addslashes($to['name']).','.$targettribe.',,,'.$rom.','.$unitssend_deff[1].','.$unitsdead_deff[1].','.$ger.','.$unitssend_deff[2].','.$unitsdead_deff[2].','.$gal.','.$unitssend_deff[3].','.$unitsdead_deff[3].','.$nat.','.$unitssend_deff[4].','.$unitsdead_deff[4].','.$natar.','.$unitssend_deff[5].','.$unitsdead_deff[5].',,,'.$unitstraped_att;
             
             //Undetected and detected in here.
             if($scout){

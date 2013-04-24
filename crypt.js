@@ -8989,7 +8989,7 @@ return new Class({
 				Implements:[Options,Events],
 				options:{
 					cssClass:"",
-					buttonOk:false,
+					buttonOk:true,
 					buttonTextOk:null,
 					buttonCancel:true,
 					buttonTextCancel:null,

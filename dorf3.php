@@ -6,7 +6,11 @@ if(isset($_GET['ok'])){
 	$database->updateUserField($session->username,'ok','0','0'); $_SESSION['ok'] = '0'; }
 if(isset($_GET['newdid'])) {
 	$_SESSION['wid'] = $_GET['newdid'];
+	if(isset($_GET['s'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?s=".$_GET['s']);
+	}else{
 	header("Location: ".$_SERVER['PHP_SELF']);
+}
 }
 else {
 	$building->procBuild($_GET);

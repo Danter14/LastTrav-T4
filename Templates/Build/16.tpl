@@ -42,7 +42,7 @@ Your village's troops meet here. From here you can send them out to conquer, rai
 $units_type = $database->getMovement("34",$village->wid,1);
 $units_incomming = count($units_type);
 for($i=0;$i<$units_incomming;$i++){
-	if($units_type[$i]['attack_type'] == 1)
+	if($units_type[$i]['attack_type'] == 1 && $units_type[$i]['sort_type'] == 3)
 		$units_incomming -= 1;
 }
 if($units_incomming >= 1){

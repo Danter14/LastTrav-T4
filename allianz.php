@@ -5,6 +5,20 @@ if(isset($_GET['aid']) && !is_numeric($_GET['aid'])) die('Hacking Attemp');
        include ("GameEngine/Chat.php");
 $start = $generator->pageLoadTimeStart();
 $alliance->procAlliance($_GET);
+if(isset($_GET['newdid'])) {
+	$_SESSION['wid'] = $_GET['newdid'];
+	if(isset($_GET['s'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?s=".preg_replace("/[^a-zA-Z0-9_-]/","",$_GET['s']));
+	}else if(isset($_GET['aid'])){
+	header("Location: ".$_SERVER['PHP_SELF']."?aid=".preg_replace("/[^a-zA-Z0-9_-]/","",$_GET['aid']));
+	}
+	else{
+	header("Location: ".$_SERVER['PHP_SELF']);
+}
+}
+if(isset($_GET['s'])){
+$automation->isWinner();
+}
 include "Templates/html.tpl";
 ?>
 <body class="v35 webkit chrome alliance">

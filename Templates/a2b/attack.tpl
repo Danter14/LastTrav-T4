@@ -73,7 +73,7 @@ $end = ($tribe*10);
 
                         <th>Location</th>
 
-                        <td><a href="karte.php?d=&amp;c="><?php echo $process[1]; ?> (<?php echo $coor['x']; ?>|<?php echo $coor['y']; ?>)</a></td>
+                        <td><a href="position_details.php?x=<?php echo $coor['x']; ?>&amp;y=<?php echo $coor['y']; ?>"><?php echo $process[1]; ?> (<?php echo $coor['x']; ?>|<?php echo $coor['y']; ?>)</a></td>
 
                     </tr>
 
@@ -165,7 +165,7 @@ $end = ($tribe*10);
                 <tbody class="options">
                 
                 <tr>
-            <th>options</th>
+            <th>Options</th>
             <td colspan="11"><input class="radio" name="spy" value="1" checked="checked" type="radio">Scout resources and troops<br>
             <input class="radio" name="spy" value="2" type="radio">Scout defences and troops                                            </td>
         </tr>
@@ -173,12 +173,12 @@ $end = ($tribe*10);
     <?php } ?>
                 
 
-        <?php if(isset($kata) AND $process['c']!='2'){?><tr>
+        <?php if(isset($kata) AND $process['c']!='2'){?>
 
             <?php if($process['c']=='3'){ ?><tbody class="cata">
                 <tr>
                     <th>Catapults</th>
-                    <td colspan="10">
+                    <td colspan="<?php if($process['t11'] != ''){ echo"11"; }else{ echo"10"; } ?>">
                     
                         <select name="ctar1" class="dropdown">
                             <option value="0">Random</option>
@@ -295,14 +295,13 @@ $end = ($tribe*10);
                 ?><tbody class="infos">  
                 <th>Destination:</th>
 
-            <td colspan="10">
+            <td colspan="<?php if($process['t11'] != ''){ echo"11"; }else{ echo"10"; } ?>">
                 <?PHP
                 
                 echo"Warning: Catapult will <b>ONLY</b> shoot with a normal attack (they dont shoot with raids!)";
                 ?>
                 </td>
 
-        </tr>
                 <?PHP
             }
             ?>

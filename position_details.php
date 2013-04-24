@@ -4,11 +4,20 @@ include("GameEngine/Village.php");
 $start = $generator->pageLoadTimeStart();
 if(isset($_GET['newdid'])) {
 	$_SESSION['wid'] = $_GET['newdid'];
-	header("Location: ".$_SERVER['PHP_SELF']);
+	if(isset($_GET['x']) && isset($_GET['y'])) {
+	header("Location: ".$_SERVER['PHP_SELF']."?x=".$_GET['x']."&y=".$_GET['y']);
+	}else{
+	$havecoor = 1;
+	$coor = $database->getCoor($_SESSION['wid']);
+	header("Location: ".$_SERVER['PHP_SELF']."?x=".$coor['x']."&y=".$coor['y']);
+	}
 }
 else {
 	$building->procBuild($_GET);
 }
+	if(!isset($_GET['x']) && !isset($_GET['y']) && !$havecoor) {
+	header("Location: ".$_SERVER['PHP_SELF']."?x=".$village->coor['x']."&y=".$village->coor['y']);
+	}
 include "Templates/html.tpl";
 ?>
 <body class="v35 webkit chrome map">
