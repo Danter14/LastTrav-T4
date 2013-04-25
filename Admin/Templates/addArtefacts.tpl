@@ -55,8 +55,8 @@
 				<td>Every 24 hours it gets a random effect, bonus, or penalty (all are possible with the exception of great warehouse, great granary and WW building plans). They change effect AND scope every 24 hours. The unique artifact will always take positive bonuses.</td>
 			</tr>
 			<tr>
-				<td>Building Plan World Wonter</td>
-				<td>With this ancient construction plan you will able to build World Wonder to level 50. to build further, your alliance must hold at least two plans.</td>
+				<td>Building Plan Wonder of the World</td>
+				<td>With this ancient construction plan you will able to build Wonder of the World to level 50. to build further, your alliance must hold at least two plans.</td>
 			</tr>
 		</tbody>
 	</table>

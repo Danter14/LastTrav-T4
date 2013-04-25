@@ -276,8 +276,8 @@ if(count($result) > 1) ## Natar Account Exists
 		Artefact($uid, 8, 3, 'Artefact of the unique fool', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type8.gif');
 	}
 
-	## Artefact Building Plan Worl Wonter
-	$desc = 'With this ancient construction plan you will able to build World Wonder to level 50. to build further, your alliance must hold at least two plans.';
+	## Artefact Building Plan Wonder of the World
+	$desc = 'With this ancient construction plan you will able to build Wonder of the World to level 50. to build further, your alliance must hold at least two plans.';
 	unset($i); unset($vname); unset($effect);
 	$vname = 'World Wonder Construction Plans';
 	for($i > 1; $i < 5; $i++)
