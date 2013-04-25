@@ -54,13 +54,17 @@
 				<td>Artefact of the Fool</td>
 				<td>Every 24 hours it gets a random effect, bonus, or penalty (all are possible with the exception of great warehouse, great granary and WW building plans). They change effect AND scope every 24 hours. The unique artifact will always take positive bonuses.</td>
 			</tr>
+			<tr>
+				<td>Building Plan World Wonter</td>
+				<td>With this ancient construction plan you will able to build World Wonder to level 50. to build further, your alliance must hold at least two plans.</td>
+			</tr>
 		</tbody>
 	</table>
-	
+
 	<br /><br />
-	
+
 	<h3>Artefact Formula</h3>
-	
+
 	<p>The actual troop numbers are randomly generated. The first text box in the column, is the low range of the random number and the second is the high range of the number.<br />
 	Then the random number is multiplied by the speed of the server.<br /><br />
 	If server speed is, 1x, 2x, or 3x, the troops are multiplied by the speed. Else the troops are multiplied 5 times.</p>
@@ -81,24 +85,24 @@
 				<?php
 				$rndsmall1 = array(1000,1500,2300,25,1200,1500,500,100,1,1);
 				$rndsmall2 = array(2000,2000,2800,75,1900,2000,900,300,5,5);
-				
+
 				$rndlrg1 = array(2000,3000,4600,50,2400,3000,1000,200,2,2);
 				$rndlrg2 = array(4000,4000,5600,150,3800,4000,1800,600,10,10);
-				
+
 				$rndunq1 = array(4000,6000,9200,100,4800,6000,2000,400,4,4);
 				$rndunq2 = array(8000,8000,11200,300,7600,8000,3600,1200,20,20);
-				
+
 					for($i=41; $i<51; $i++)
 					{
 						$p = $i - 41;
-						echo 
+						echo
 						'
 							<tr>
-								<td><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>
+								<td><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>
 								<td><input class="fm" name="small1u'.$i.'" value="'.$rndsmall1[$p].'" maxlength="6" style="width: 50%;"><input class="fm" name="small2u'.$i.'" value="'.$rndsmall2[$p].'" maxlength="6" style="width: 50%;"></td>
-								<td><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>
+								<td><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>
 								<td><input class="fm" name="large1u'.$i.'" value="'.$rndlrg1[$p].'" maxlength="6" style="width: 50%;"><input class="fm" name="large2u'.$i.'" value="'.$rndlrg2[$p].'" maxlength="6" style="width: 50%;"></td>
-								<td><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>
+								<td><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>
 								<td><input class="fm" name="unique1u'.$i.'" value="'.$rndunq1[$p].'" maxlength="6" style="width: 50%;"><input class="fm" name="unique2u'.$i.'" value="'.$rndunq2[$p].'" maxlength="6" style="width: 50%;"></td>
 							</tr>
 						';
@@ -108,9 +112,9 @@
 			</tr>
 		</tbody>
 	</table>
-	
+
 	<br /><br />
-	
+
 	<center><input type="image" src="../img/admin/b/ok1.gif" value="submit"></center>
 </form>
 <?php

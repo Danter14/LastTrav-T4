@@ -9,7 +9,9 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
@@ -25,8 +27,8 @@ if($sessionaccess != 9) die("<h1><font color=\"red\">Access Denied: You are not 
 
 $access = $_POST['access'];
 
-mysql_query("UPDATE ".TB_PREFIX."users SET 
-	access = ".$access." 
+mysql_query("UPDATE ".TB_PREFIX."users SET
+	access = ".$access."
 	WHERE id = ".$id."") or die(mysql_error());
 
 header("Location: ../../../Admin/admin.php?p=player&uid=".$id."");

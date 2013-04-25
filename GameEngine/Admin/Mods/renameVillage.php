@@ -9,14 +9,16 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
 
+$session = $_POST['admid'];
 $did = $_POST['did'];
 $name = $_POST['villagename'];
-$session = $_POST['admid'];
 
 $sql = mysql_query("SELECT * FROM ".TB_PREFIX."users WHERE id = ".$session."");
 $access = mysql_fetch_array($sql);

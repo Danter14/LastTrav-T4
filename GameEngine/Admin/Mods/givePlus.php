@@ -9,7 +9,9 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
@@ -35,7 +37,7 @@ for($i = 0; $i < $loops + 1; $i++)
 	{
 		if($row['plus'] < time()) { $plusbefore = time(); $addplus = $plusbefore + $plusdur; } elseif($row['plus'] > time()) { $plusbefore = $row['plus']; $addplus = $plusbefore + $plusdur; }
 		mysql_query("UPDATE ".TB_PREFIX."users SET
-			plus = '".$addplus."' 
+			plus = '".$addplus."'
 			WHERE id = '".$row['id']."'");
 	}
 }

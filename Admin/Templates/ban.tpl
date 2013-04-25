@@ -1,4 +1,4 @@
-<?php 
+<?php
 #################################################################################
 ##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
 ## --------------------------------------------------------------------------- ##
@@ -11,7 +11,7 @@
 #################################################################################
 ?>
 <style>
-	.del {width:12px; height:12px; background-image: url(img/admin/icon/del.gif);} 
+	.del {width:12px; height:12px; background-image: url(img/admin/icon/del.gif);}
 </style>
 
 <form action="" method="get">
@@ -20,29 +20,29 @@
 		<thead>
 			<tr>
 				<th colspan="6">Ban</th>
-			</tr>                                       
+			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>User ID</td>                                    
-				<td>                                                   
+				<td>User ID</td>
+				<td>
 					<input type="text" class="fm" name="uid" value="<?php echo $_GET['uid'];?>">
-				</td>      
+				</td>
 			</tr>
 			<tr>
 				<td>Reason</td>
 				<td>
-					<select name="reason" class="fm">         
-						<?php     
-							$arr = array('Pushing','Cheat','Hack','Bug','Bad Name','Multi Account','Swearing');            
+					<select name="reason" class="fm">
+						<?php
+							$arr = array('Pushing','Cheat','Hack','Bug','Bad Name','Multi Account','Swearing');
 							foreach($arr as $r)
 							{
-								echo '<option value="'.$r.'">'.$r.'</option>';                         
+								echo '<option value="'.$r.'">'.$r.'</option>';
 							}
 						?>
 					</select>
 				</td>
-			</tr>       
+			</tr>
 			<tr>
 				<td>Duration</td>
 				<td>
@@ -61,10 +61,10 @@
 							echo '<option value="">Forever</option>';
 						?>
 					</select>
-				</td>      
+				</td>
 			</tr>
 			<tr>
-				<td colspan="2" class="on"><input type="image" src="../img/admin/b/ok1.gif" value="submit"></td>     
+				<td colspan="2" class="on"><input type="image" src="../img/admin/b/ok1.gif" value="submit"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -101,7 +101,7 @@ $bannedUsers = $admin->search_banned();
 					{
 						$name = $database->getUserField($bannedUsers[$i]['uid'],'username',0);
 						$link = '<a href="?p=player&uid='.$bannedUsers[$i]['uid'].'">'.$name.'<a/>';
-					} 
+					}
 					if($bannedUsers[$i]['end'])
 					{
 						$end = date("d.m.y H:i",$bannedUsers[$i]['end']);
@@ -115,7 +115,7 @@ $bannedUsers = $admin->search_banned();
 						<td>'.$link.'</td>
 						<td ><span class="f7">'.date("d.m.y H:i",$bannedUsers[$i]['time']).' - '.$end.'</td>
 						<td>'.$bannedUsers[$i]['reason'].'</td>
-						<td class="on"><a href="?action=delBan&uid='.$bannedUsers[$i]['uid'].'&id='.$bannedUsers[$i]['id'].'" onClick="return del(\'unban\',\''.$name.'\')"><img src="../img/Admin/del.gif" class="del" title="cancel" alt="cancel"></img></a></td>
+						<td class="on"><a href="?action=delBan&uid='.$bannedUsers[$i]['uid'].'&id='.$bannedUsers[$i]['id'].'" onClick="return del(\'unban\',\''.$name.'\')"><img src="../img/admin/del.gif" class="del" title="cancel" alt="cancel"></img></a></td>
 					</tr>';
 				}
 			}

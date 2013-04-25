@@ -14,37 +14,37 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 $id = $_GET['uid'];
 if(isset($id))
-{        
-	$user = $database->getUserArray($id,1);    
+{
+	$user = $database->getUserArray($id,1);
 	$varray = $database->getProfileVillages($id);
 	$varmedal = $database->getProfileMedal($id); ?>
 
 	<link href="../gpack/travian_default/lang/en/compact.css?f4b7c" rel="stylesheet" type="text/css">
 	<style type="text/css">
-		input.dynamic_img, img.dynamic_img 
+		input.dynamic_img, img.dynamic_img
 		{
 			background-position: center top;
 			height: 20px;
 		}
-		input#btn_send 
+		input#btn_send
 		{
 			width: 97px;
 			background-image: url(../gpack/travian_default/lang/en/b/send.gif);
 		}
-		div.messages div#write_content #heading input 
+		div.messages div#write_content #heading input
 		{
-			
+
 		}
 	</style>
-	
+
 	<h4>Compose New Message to <a href="admin.php?p=player&uid=<?php echo $user['id'] ?>"><?php echo $user['username']; ?></a></h4>
-	
-	<form method="post" action="../Admin/Mods/sendMessage.php" accept-charset="UTF-8" name="msg">
+
+	<form method="post" action="../GameEngine/Admin/Mods/sendMessage.php" accept-charset="UTF-8" name="msg">
 	<div id="content" class="messages">
 		<div id="read_head" class="msg_head"></div>
 		<div id="read_content" class="msg_content">
 			<img src="../../gpack/travian_default/lang/en/msg/block_bg24b.gif" id="label" class="read" alt="">
-			
+
 			<div id="heading">
 				<input type="hidden" name="uid" value="<?php echo $id; ?>">
 				<div><a href="admin.php?p=player&uid=<?php echo $user['id']; ?>"><?php echo $user['username']; ?></a></div>
@@ -53,14 +53,14 @@ if(isset($id))
 			<div id="time">
 				<div><?php echo date('d.m.y'); ?></div>
 				<div><?php echo date('H:i:s'); ?></div>
-			</div>  
-			<div class="clear"></div>				
+			</div>
+			<div class="clear"></div>
 			<div class="line"></div>
 			<div class="message" style="margin-top: 10px;">
 				<textarea id="message" name="message" style="background-image: url('../gpack/travian_default/img/msg/underline.gif'); background-repeat: repeat; font-size: 12px; border: medium none; height: 258px; line-height: 16px; width: 412px; font-family: Verdana,Arial,Helvetica,sans-serif;">Message Here</textarea>
 			</div>
 			<p class="btn">
-				<input type="image" value="submit" name="s1" id="btn_send" class="dynamic_img clicked" src="../img/admin/x.gif" alt="send" tabindex="4;">
+				<input type="image" value="submit" name="s1" id="btn_send" class="dynamic_img clicked" src="../img/admin/b/ok1.gif" alt="send" tabindex="4;">
 			</p>
 			<div id="read_foot" class="msg_foot"></div>
 		</div>

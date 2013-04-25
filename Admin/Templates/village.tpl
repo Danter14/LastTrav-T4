@@ -1,4 +1,4 @@
-<?php 
+<?php
 #################################################################################
 ##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
 ## --------------------------------------------------------------------------- ##
@@ -48,35 +48,35 @@ if(isset($id))
 	91l+gRNDLzw6f+nepcsPrl14cPXW8wcMWqVaEYdtPdZYubUHww0AMs5cusygU68UtVUr87CPWbdd
 	9Ly83TcO7Lq2I7ozoXfZTAalCjWZemnlaYo2u0wVFkoJdwoyZDOZNDi//vqRwbkjac+dC827p2h3
 	Gyh3S6m0a0Qszrnz6RnQWAAxV5tT/VAiNQAAAABJRU5ErkJggg==";
-	class Generator 
+	class Generator
 	{
-		public function getMapCheck($wref) 
+		public function getMapCheck($wref)
 		{
 			return substr(md5($wref),5,2);
 		}
 	};
 	$generator = new Generator;
 	if($village and $user)
-	{ 
+	{
 		include("search2.tpl"); ?>
 		<style>
-			.del {width:12px; height:12px; background-image: url(img/admin/icon/del.gif);} 
+			.del {width:12px; height:12px; background-image: url(img/admin/icon/del.gif);}
 		</style>
 		<link href="../gpack/travian_default/lang/en/compact.css?f4b7c" rel="stylesheet" type="text/css">
 		<br />
-		
+
 		<table id="profile" cellpadding="1" cellspacing="1" >
 			<thead>
 				<tr>
 					<th colspan="3">Village Information</th>
-				</tr>                                       
+				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>Village owner:</td>
 					<td><a href="admin.php?p=player&uid=<?php echo $village['owner']; ?>"><?php echo $user['username']; ?></a></td>
 					<td>
-						<form action="../GameEngine/Admin/mods/editVillageOwner.php" method="POST" accept-charset="UTF-8">
+						<form action="../GameEngine/Admin/Mods/editVillageOwner.php" method="POST" accept-charset="UTF-8">
 							<input type="hidden" name="did" value="<?php echo $_GET['did']; ?>">
 							<input type="hidden" name="admid" id="admid" value="<?php echo $_SESSION['id']; ?>">
 							Owner(uid): <input class="text" type="text" name="newowner" value="<?php echo $user['id']; ?>"><input type="image" value="submit" src="../img/admin/edit.gif">
@@ -84,7 +84,7 @@ if(isset($id))
 					</td>
 				<tr>
 					<td>Village name:</td>
-					<form action="../GameEngine/Admin/mods/renameVillage.php" method="POST" accept-charset="UTF-8">
+					<form action="../GameEngine/Admin/Mods/renameVillage.php" method="POST" accept-charset="UTF-8">
 						<input type="hidden" name="did" value="<?php echo $_GET['did']; ?>">
 						<input type="hidden" name="admid" id="admid" value="<?php echo $_SESSION['id']; ?>">
 						<td colspan="2">
@@ -98,7 +98,7 @@ if(isset($id))
 				</tr>
 				<tr>
 					<td>Coordinates:</td>
-					<td colspan="2"><a href="<?php echo HOMEPAGE ?>karte.php?d=<?php echo $village['wref']; ?>&c=<?php echo $generator->getMapCheck($village['wref']); ?>" target="blank">(<?php echo $coor['x']; ?>|<?php echo $coor['y']; ?>)</a></td>
+					<td colspan="2"><a href="<?php echo HOMEPAGE ?>/karte.php?d=<?php echo $village['wref']; ?>&c=<?php echo $generator->getMapCheck($village['wref']); ?>" target="blank">(<?php echo $coor['x']; ?>|<?php echo $coor['y']; ?>)</a></td>
 				</tr>
 				<tr>
 					<td>Village ID</td>
@@ -107,8 +107,8 @@ if(isset($id))
 				<tr>
 					<td>Field type</td>
 					<td colspan="2">
-						<?php        
-							for ($i = 0; $i <= 3; $i++) 
+						<?php
+							for ($i = 0; $i <= 3; $i++)
 							{
 								$a = $i+1;
 								if($i != 3)
@@ -118,7 +118,7 @@ if(isset($id))
 								else
 								{
 									echo $typ[$i].'x <img src="../img/admin/r/'.$a.'.gif"> ';
-								} 
+								}
 							}
 						?>
 					</td>
@@ -133,7 +133,7 @@ if(isset($id))
 				</tr>
 				<tr>
 					<td>Resource</td>
-					<form action="../GameEngine/Admin/mods/recalcWH.php" method="POST" accept-charset="UTF-8">
+					<form action="../GameEngine/Admin/Mods/recalcWH.php" method="POST" accept-charset="UTF-8">
 					<input type="hidden" name="did" value="<?php echo $_GET['did']; ?>">
 					<input type="hidden" name="admid" id="admid" value="<?php echo $_SESSION['id']; ?>">
 					<?php
@@ -178,7 +178,7 @@ if(isset($id))
 			</tbody>
 		</table>
 
-		
+
 		<table id="member">
 			<thead>
 				<tr>
@@ -221,19 +221,19 @@ if(isset($id))
 				</tr>
 			</tbody>
 		</table>
-		
+
 		<table id="member" cellpadding="1" cellspacing="1" >
 			<thead>
 				<tr>
 					<th colspan="6">Oases</th>
-				</tr>  
+				</tr>
 				<tr>
 					<td class="ra"></td>
 					<td class="hab">Name</td>
-					<td class="hab">Coordinates</td>  
+					<td class="hab">Coordinates</td>
 					<td class="hab">Loyalty</td>
 					<td class="hab">Resources</td>
-				</tr>                                     
+				</tr>
 			</thead>
 			<tbody>
 				<?php
@@ -278,7 +278,7 @@ if(isset($id))
 							$oasiswref = $row['wref'];
 							$oasisx = mysql_result(mysql_query("SELECT x FROM ".TB_PREFIX."wdata WHERE id = ".$oasiswref.""), 0);
 							$oasisy = mysql_result(mysql_query("SELECT y FROM ".TB_PREFIX."wdata WHERE id = ".$oasiswref.""), 0);
-							
+
 							$type = $row['type'];
 							if($type==1) 	 { $type = '<img src="../img/admin/r/1.gif"> + 25%'; }
 							elseif($type==2) { $type = '<img src="../img/admin/r/1.gif"> + 25%'; }
@@ -300,7 +300,7 @@ if(isset($id))
 								<td class=\"hab\">".$row['loyalty']."%</td>
 								<td class=\"hab\">$type</td>
 							</tr>";
-						}	  ##<td class=\"hab\">".$row['wood']." <img src=\"../img/admin/r/1.gif\"><br />".$row['clay']." <img src=\"../img/admin/r/2.gif\"><br />".$row['iron']." <img src=\"../img/admin/r/3.gif\"><br />".$row['crop']." <img src=\"../img/admin/r/4.gif\"></td> 
+						}	  ##<td class=\"hab\">".$row['wood']." <img src=\"../img/admin/r/1.gif\"><br />".$row['clay']." <img src=\"../img/admin/r/2.gif\"><br />".$row['iron']." <img src=\"../img/admin/r/3.gif\"><br />".$row['crop']." <img src=\"../img/admin/r/4.gif\"></td>
 					}
 					elseif($isthere ==0)
 					{
@@ -309,15 +309,15 @@ if(isset($id))
 				?>
 			</tbody>
 		</table>
-		
+
 		<?php
 			include('troops.tpl');
 		?>
-		
+
 		<?php
 			##include('troopUpgrades.tpl');
 		?>
-		
+
 
 		<a href="admin.php?p=editVillage&did=<?php echo $_GET['did']; ?>" title="Edit Village">
 		<div id="content" class="village1" style="min-height: 264px;">
@@ -413,18 +413,18 @@ if(isset($id))
     <thead>
 		<tr>
 			<th colspan="4">Resources</th>
-		</tr> 
+		</tr>
 
 		<tr>
 			<td class="hab">Resource</td>
-			<td class="hab" colspan="2">Warehouse</td>  
-		</tr>                                     
+			<td class="hab" colspan="2">Warehouse</td>
+		</tr>
 	</thead>
-	<tbody> 
+	<tbody>
 		<tr>
 			<td><img src="../img/admin/r/1.gif"> Lumber</td>
 			<td class="hab"><?php echo floor($village['wood']);?></td>
-			<td class="hab" rowspan="3"><?php echo $village['maxstore'];?></td>      
+			<td class="hab" rowspan="3"><?php echo $village['maxstore'];?></td>
 		</tr>
 		<tr>
 			<td><img src="../img/admin/r/2.gif"> Clay</td>
@@ -432,12 +432,12 @@ if(isset($id))
 		</tr>
 		<tr>
 			<td><img src="../img/admin/r/3.gif"> Iron</td>
-			<td class="hab"><?php echo floor($village['iron']);?></td>    
+			<td class="hab"><?php echo floor($village['iron']);?></td>
 		</tr>
 		<tr>
 			<td><img src="../img/admin/r/4.gif"> Crop</td>
 			<td class="hab"><?php echo floor($village['crop']);?></td>
-			<td class="hab"><?php echo $village['maxcrop'];?></td> 
+			<td class="hab"><?php echo $village['maxcrop'];?></td>
 		</tr>
     </tbody>
 </table>-->
@@ -454,7 +454,7 @@ if(isset($id))
 	<thead>
 		<tr>
 			<th colspan="5">Buildings</th>
-		</tr> 
+		</tr>
 		<tr>
 			<td class="on">ID</td>
 			<td class="on">GID</td>
@@ -463,7 +463,7 @@ if(isset($id))
 			<td class="on">Edit</td>
 		</tr>
 	</thead>
-	<tbody> 
+	<tbody>
 	<?php
 	for ($i = 1; $i <= 40; $i++)
 	{
@@ -479,7 +479,7 @@ if(isset($id))
 			<tr>
 				<td class="on">'.$i.'</td>
 				<td class="on">'.$fdata['f'.$i.'t'].'</td>
-				<td class="hab">'.$bu.'</td>   
+				<td class="hab">'.$bu.'</td>
 				<td class="on">'.$fdata['f'.$i].'</td>
 				<td class="on"><a href="admin.php?p=editVillage&did='.$_GET['did'].'"><img src="../img/admin/edit.gif" title="Edit Building & Level"></a></td>
 			</tr>';

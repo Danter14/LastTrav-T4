@@ -9,7 +9,9 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
@@ -36,13 +38,13 @@ if($b2dur > 1){ $clay = (time() + $b2dur); } else { $clay = 'b2'; }
 if($b3dur > 1){ $iron = (time() + $b3dur); } else { $iron = 'b3'; }
 if($b4dur > 1){ $crop = (time() + $b4dur); } else { $crop = 'b4'; }
 
-mysql_query("UPDATE ".TB_PREFIX."users SET 
+mysql_query("UPDATE ".TB_PREFIX."users SET
 	plus = '".$plus."',
-	b1 = '".$wood."', 
+	b1 = '".$wood."',
 	b2 = '".$clay."',
 	b3 = '".$iron."',
-	b4 = '".$crop."', 
-	quest = '".$quest."' 
+	b4 = '".$crop."',
+	quest = '".$quest."'
 	WHERE id = $id") or die(mysql_error());
 
 header("Location: ../../../Admin/admin.php?p=player&uid=".$id."");

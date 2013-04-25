@@ -9,7 +9,9 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
@@ -23,10 +25,10 @@ $sessionaccess = $access['access'];
 
 if($sessionaccess != 9) die("<h1><font color=\"red\">Access Denied: You are not Admin!</font></h1>");
 
-mysql_query("UPDATE ".TB_PREFIX."users SET 
-	ap = '".$_POST['off']."', 
-	dp = '".$_POST['def']."', 
-	RR = '".$_POST['res']."' 
+mysql_query("UPDATE ".TB_PREFIX."users SET
+	ap = '".$_POST['off']."',
+	dp = '".$_POST['def']."',
+	RR = '".$_POST['res']."'
 	WHERE id = $id") or die(mysql_error());
 
 header("Location: ../../../Admin/admin.php?p=player&uid=".$id."");

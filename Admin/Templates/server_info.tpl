@@ -1,4 +1,4 @@
-<?php 
+<?php
 #################################################################################
 ##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
 ## --------------------------------------------------------------------------- ##
@@ -27,7 +27,7 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 			<tr>
 				<td>Registered players</td>
 				<td><?php echo $users; ?></td>
-			</tr>	 
+			</tr>
 			<tr>
 				<td>Active players</td>
 				<td><?php $result = mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."active"); $num_rows = mysql_num_rows($result); echo $num_rows; ?></td>
@@ -58,9 +58,9 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 			</tr>
 		</tbody>
 	</table>
-	
+
 	<br />
-    
+
 	<table id="profile">
         <thead>
 			<tr><th colspan="3">Player Information</th></tr>
@@ -100,7 +100,7 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 		</thead>
 		<tbody>
 			<tr>
-				<td><img src="../../gpack/travian_default/img/a/gold.gif" alt="Gold" title="Gold"> Gold</td>
+				<td><img src="../gpack/travian_default/img/a/gold.gif" alt="Gold" title="Gold"> Gold</td>
 				<td><?php $gold = mysql_query("SELECT SUM(gold) AS sumofgold FROM ".TB_PREFIX."users"); $getgold=mysql_fetch_assoc($gold); echo $getgold['sumofgold']; ?></td>
 				<td><?php $gold = mysql_query("SELECT SUM(gold) AS sumofgold FROM ".TB_PREFIX."users"); $getgold=mysql_fetch_assoc($gold); echo round($getgold['sumofgold'] / $users);?></td>
 			</tr>
@@ -115,7 +115,7 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 			<?php
 				for($i=1; $i<11; $i++)
 				{
-					echo '<td class="on"><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>';
+					echo '<td class="on"><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>';
 				}
 				echo '</thead><tbody>';
 				for($i=1; $i<11; $i++)
@@ -124,11 +124,11 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 					$troop = mysql_fetch_assoc($t);
 					echo '<td class="on">'.$troop['sumof'].'</td>';
 				}
-				
+
 				echo "</tr>";
 				for($i=11; $i<21; $i++)
 				{
-					echo '<td class="on"><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>';
+					echo '<td class="on"><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>';
 				}
 				echo '</thead><tbody>';
 				for($i=11; $i<21; $i++)
@@ -137,11 +137,11 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 					$troop = mysql_fetch_assoc($t);
 					echo '<td class="on">'.$troop['sumof'].'</td>';
 				}
-				
+
 				echo "</tr>";
 				for($i=21; $i<31; $i++)
 				{
-					echo '<td class="on"><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>';
+					echo '<td class="on"><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>';
 				}
 				echo '</thead><tbody>';
 				for($i=21; $i<31; $i++)
@@ -150,11 +150,11 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 					$troop = mysql_fetch_assoc($t);
 					echo '<td class="on">'.$troop['sumof'].'</td>';
 				}
-				
+
 				echo "</tr>";
 				for($i=31; $i<41; $i++)
 				{
-					echo '<td class="on"><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>';
+					echo '<td class="on"><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>';
 				}
 				echo '</thead><tbody>';
 				for($i=31; $i<41; $i++)
@@ -163,11 +163,11 @@ $users = mysql_num_rows(mysql_query("SELECT SQL_CACHE * FROM ".TB_PREFIX."users"
 					$troop = mysql_fetch_assoc($t);
 					echo '<td class="on">'.$troop['sumof'].'</td>';
 				}
-				
+
 				echo "</tr>";
 				for($i=41; $i<51; $i++)
 				{
-					echo '<td class="on"><img src="../../gpack/travian_default/img/u/'.$i.'.gif"></td>';
+					echo '<td class="on"><img src="../gpack/travian_default/img/u/'.$i.'.gif"></td>';
 				}
 				echo '</thead><tbody>';
 				for($i=41; $i<51; $i++)

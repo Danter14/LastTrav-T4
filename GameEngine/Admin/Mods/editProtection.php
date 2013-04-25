@@ -9,13 +9,15 @@
 ##                                                                             ##
 #################################################################################
 
+include_once("../../Database/connection.php");
 include_once("../../config.php");
+include_once("../../Database/db_MYSQL.php");
 
 mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
 
 $session = $_POST['admid'];
-$id = $_POST['id'];
+$id = $_POST['uid'];
 
 $sql = mysql_query("SELECT * FROM ".TB_PREFIX."users WHERE id = ".$session."");
 $access = mysql_fetch_array($sql);
@@ -26,8 +28,8 @@ if($sessionaccess != 9) die("<h1><font color=\"red\">Access Denied: You are not 
 $dur = $_POST['protect'] * 86400;
 $protection = (time() + $dur);
 
-mysql_query("UPDATE ".TB_PREFIX."users SET 
-	protect = '".$protection."' 
+mysql_query("UPDATE ".TB_PREFIX."users SET
+	protect = '".$protection."'
 	WHERE id = $id") or die(mysql_error());
 
 header("Location: ../../../Admin/admin.php?p=player&uid=".$id."");

@@ -1,4 +1,4 @@
-<?php 
+<?php
 #################################################################################
 ##              -= YOU MAY NOT REMOVE OR CHANGE THIS NOTICE =-                 ##
 ## --------------------------------------------------------------------------- ##
@@ -26,7 +26,7 @@ $nummedals = mysql_num_rows($sql);
 		<tr>
 			<th>Medal Information</th>
 		</tr>
-	</thead> 
+	</thead>
 </table>
 <table id="profile">
 	<thead>
@@ -57,7 +57,7 @@ $nummedals = mysql_num_rows($sql);
 		<tr>
 			<th>Medal Week by Week</th>
 		</tr>
-	</thead> 
+	</thead>
 </table>
 <table id="profile">
 	<thead>
@@ -72,10 +72,10 @@ $nummedals = mysql_num_rows($sql);
 			for($j = 0; $j<$week; $j++)
 			{
 				$newweek = $j+1;
-				
+
 				$sql = mysql_query("SELECT * FROM ".TB_PREFIX."medal WHERE week = $newweek");
 				$tot = mysql_num_rows($sql);
-				
+
 				echo "<tr><td>$newweek</td><td>$tot</td><td><input type=\"image\" name=\"medalweek\" value=\"".$newweek."\" style=\"background-image: url('../gpack/travian_default/img/a/del.gif'); height: 12px; width: 12px;\" src=\"../gpack/travian_default/img/a/x.gif\"></td>";
 			}
 		?>
@@ -95,7 +95,7 @@ $nummedals = mysql_num_rows($sql);
 		<tr>
 			<th>All Medals (<?php echo $nummedals; ?>)</th>
 		</tr>
-	</thead> 
+	</thead>
 </table>
 <table id="profile">
 	<thead>
@@ -117,7 +117,7 @@ $nummedals = mysql_num_rows($sql);
 			{
 				$i = $i + 1;
 				$titel="Bonus";
-				switch ($row['categorie']) 
+				switch ($row['categorie'])
 				{
 					case "1": 	$titel="Attackers"; break;
 					case "2": 	$titel="Defenders"; break;
@@ -138,17 +138,17 @@ $nummedals = mysql_num_rows($sql);
 				$points = $row['points'];
 				$bb = $row['id'];
 				$playerid = $row['userid'];
-				
+
 				$unq = "SELECT username FROM ".TB_PREFIX."users where id = $playerid";
 				$user = mysql_result(mysql_query($unq), 0);
 				$username = $user;
-				
+
 				$player = "<a href=\"admin.php?p=player&uid=".$playerid."\">$username</a>";
 				echo"
 				<tr>
 					<td>$i</td>
 					<td>[#$bb]</td>
-					<td><img src=\"../../gpack/travian_default/img/t/".$row['img'].".jpg\"></td>
+					<td><img src=\"../gpack/travian_default/img/t/".$row['img'].".jpg\"></td>
 					<td>$player</td>
 					<td>$rank</td>
 					<td>$week</td>

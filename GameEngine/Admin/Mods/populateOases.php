@@ -11,13 +11,16 @@
 
 ini_set('max_execution_time', 300);
 
-include ("../../Database.php"); 
-include ("../../Admin/database.php"); 
+include ("../../Database.php");
+include ("../../Admin/database.php");
 include ("../../config.php");
 
-$database->populateOasisdata();  
-$database->populateOasis();
-$database->populateOasisUnitsHigh();
+mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
+mysql_select_db(SQL_DB);
 
-header("Location: ../../../Admin/admin.php?p=server_info");
+		$database->poulateOasisdata();
+		$database->populateOasis();
+		$database->populateOasisUnitsLow();
+
+header("Location: ../../../Admin/admin.php?p=oasis&g");
 ?>

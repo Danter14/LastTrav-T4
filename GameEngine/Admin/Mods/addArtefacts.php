@@ -55,7 +55,7 @@ if(count($result) > 1) ## Natar Account Exists
 		$database->updateUserField($uid, "access", USER, 1);
 		##$message->sendWelcome($uid, $username);
 	}
-	
+
 	function Artefact($uid, $type, $size, $art_name, $village_name, $desc, $effect, $img)
 	{
        	global $database;
@@ -94,7 +94,7 @@ if(count($result) > 1) ## Natar Account Exists
        		mysql_query("UPDATE ".TB_PREFIX."fdata SET f22t = 27, f22 = 10, f28t = 25, f28 = 20, f19t = 23, f19 = 10, f32t = 23, f32 = 10 WHERE vref = $wid");
        	}
 	}
-	
+
 	## Architects
 	$desc = 'All buildings in the area of effect are stronger. This means that you will need more catapults to damage buildings protected by this artifacts powers.';
 	$vname = 'Diamond Chisel';
@@ -113,11 +113,11 @@ if(count($result) > 1) ## Natar Account Exists
 	unset($i); unset($vname); unset($effect);
 	$vname = 'Hemons Scrolls';
 	$effect = '(5x)';
-	for($i > 1; $i < 1; $i++) 
+	for($i > 1; $i < 1; $i++)
 	{
 		Artefact($uid, 1, 3, 'The architects unique secret', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type1.gif');
 	}
-	
+
 	## Haste
 	$desc = 'All troops in the area of effect move faster.';
 	unset($i); unset($vname); unset($effect);
@@ -141,7 +141,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 2, 3, 'The unique titan boots', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type2.gif');
 	}
-	
+
 	## Hawks Eyesight
 	$desc = 'All spies (Scouts, Pathfinders, and Equites Legati) increase their spying ability. In addition, with all versions of this artifact you can see the incoming TYPE of troops but not how many there are.';
 	unset($i); unset($vname); unset($effect);
@@ -165,7 +165,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 3, 3, 'The eagles unique eyes', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type3.gif');
 	}
-	
+
 	## Diet
 	$desc = 'All troops in the artifacts range consume less wheat, making it possible to maintain a larger army.';
 	unset($i); unset($vname); unset($effect);
@@ -189,7 +189,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 4, 3, 'Unique diet control', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type4.gif');
 	}
-	
+
 	## Academic Advancement
 	$desc = 'Troops are built a certain percentage faster within the scope of the artifact.';
 	unset($i); unset($vname); unset($effect);
@@ -213,7 +213,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 5, 3, 'The trainers unique talent', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type5.gif');
 	}
-	
+
 	## Storage Master Plan
 	$desc = 'With this building plan you are able to build the Great Granary or Great Warehouse in the Village with the artifact, or the whole account depending on the artifact. As long as you posses that artifact you are able to build and enlarge those buildings.';
 	unset($i);  unset($vname); unset($effect);;
@@ -230,7 +230,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 6, 2, 'Great storage masterplan', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type6.gif');
 	}
-	
+
 	## Rivals Confusion
 	$desc = 'Cranny capacity is increased by a certain amount for each type of artifact. Catapults can only shoot random on villages within this artifacts power. Exceptions are the WW which can always be targeted and the treasure chamber which can always be targeted, except with the unique artifact. When aiming at a resource field only random resource fields can be hit, when aiming at a building only random buildings can be hit.';
 	unset($i); unset($vname); unset($effect);
@@ -254,7 +254,7 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 7, 3, 'Rivals unique confusion', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type7.gif');
 	}
-	
+
 	## Artefact of the Fool
 	$desc = 'Every 24 hours it gets a random effect, bonus, or penalty (all are possible with the exception of great warehouse, great granary and WW building plans). They change effect AND scope every 24 hours. The unique artifact will always take positive bonuses.';
 	unset($i); unset($vname); unset($effect);
@@ -275,6 +275,16 @@ if(count($result) > 1) ## Natar Account Exists
 	{
 		Artefact($uid, 8, 3, 'Artefact of the unique fool', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'type8.gif');
 	}
+
+	## Artefact Building Plan Worl Wonter
+	$desc = 'With this ancient construction plan you will able to build World Wonder to level 50. to build further, your alliance must hold at least two plans.';
+	unset($i); unset($vname); unset($effect);
+	$vname = 'World Wonder Construction Plans';
+	for($i > 1; $i < 5; $i++)
+	{
+		Artefact($uid, 3, 3, 'Ancient Construction Plan', ''.$vname.'', ''.$desc.'', ''.$effect.'', 'typeww.gif');
+	}
+
 	header("Location: ../../../Admin/admin.php?p=addArtefacts&g");
 }
 else

@@ -26,10 +26,10 @@ mysql_select_db(SQL_DB);
 if ($session->access < ADMIN) die("Access Denied: You are not Admin!");
 
 $id = $_POST['id'];
-$village = $database->getVillage($id);  
-$user = $database->getUserArray($village['owner'],1);  
-$coor = $database->getCoor($village['wref']); 
-$varray = $database->getProfileVillages($village['owner']); 
+$village = $database->getVillage($id);
+$user = $database->getUserArray($village['owner'],1);
+$coor = $database->getCoor($village['wref']);
+$varray = $database->getProfileVillages($village['owner']);
 $type = $database->getVillageType($village['wref']);
 $fdata = $database->getResourceLevel($village['wref']);
 $units = $database->getUnit($village['wref']);
@@ -108,6 +108,6 @@ mysql_query($q);
 
 mysql_query("Insert into ".TB_PREFIX."admin_log values (0,".$_SESSION['id'].",'Changed troop anmount in village <a href=\'admin.php?p=village&did=$id\'>$id</a> ',".time().")");
 
-header("Location: ../../../admin.php?p=addTroops&did=".$id."&d");
+header("Location: ../../../Admin/admin.php?p=addTroops&did=".$id."&d");
 
 ?>
