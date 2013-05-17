@@ -18,11 +18,7 @@ class Building {
 			$this->maxConcurrent += PLUS_MAX;
 		}
 		$this->LoadBuilding();
-		foreach($this->buildArray as $build) {
-		if($build['master']==1){
-		$this->maxConcurrent += 1;
-		}
-		}
+		
 	}
 	
 	public function procBuild($get) { 
@@ -219,12 +215,7 @@ class Building {
 			case 42: $build = "Great Workshop"; break;
 			default: $build = "Error"; break;
 		}
-        /*
-         * Don't think we need to add slashes here?
-         * addslashes line left in but commented out for easy reversion if it breaks anything
-         */
-		//return addslashes($build);
-        return $build;
+		return addslashes($build);
 	}
 	
 	private function loadBuilding() {
@@ -260,9 +251,7 @@ class Building {
 			if($jobs['id'] == $d) {
 				$uprequire = $this->resourceRequired($jobs['field'],$jobs['type']);
 				if($database->removeBuilding($d)) {
-					if($jobs['master'] == 0){
 					$database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],1);
-					}
 					if($jobs['field'] >= 19) {
 						header("Location: dorf2.php");
 					}
@@ -309,7 +298,6 @@ class Building {
 					$time = $this->buildArray[0]['timestamp'] + $uprequire['time'];
 				}
 			}
-			if($session->access!=BANNED){
 			$level = $database->getResourceLevel($village->wid);
 			if($database->addBuilding($village->wid,$id,$village->resarray['f'.$id.'t'],$loop,$time+($loop==1?ceil(60/SPEED):0),0,$level['f'.$id] + 1 + count($database->getBuildingByField($village->wid,$id)))) {
 				$database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0);
@@ -320,9 +308,6 @@ class Building {
 				else {
 					header("Location: dorf1.php");
 				}
-			}
-			}else{
-			header("Location: banned.php");
 			}
 			}
 		}
@@ -354,14 +339,10 @@ class Building {
 					$time = $this->buildArray[0]['timestamp'] + round($dataarray[$village->resarray['f'.$id]-1]['time'] / 4);
 				}
 			}
-			if($session->access!=BANNED){
 			$level = $database->getResourceLevel($village->wid);
 			if($database->addBuilding($village->wid,$id,$village->resarray['f'.$id.'t'],$loop,$time,0,0,$level['f'.$id] + 1 + count($database->getBuildingByField($village->wid,$id)))) {
 				$logging->addBuildLog($village->wid,$this->procResType($village->resarray['f'.$id.'t']),($village->resarray['f'.$id]-1),2);
 				header("Location: dorf2.php");
-			}
-			}else{
-			header("Location: banned.php");
 			}
 		}	
 	}
@@ -389,16 +370,12 @@ class Building {
 				}
 			}
 			if($this->meetRequirement($tid)) {
-			if($session->access!=BANNED){
 			$level = $database->getResourceLevel($village->wid);
 				if($database->addBuilding($village->wid,$id,$tid,$loop,$time,0,$level['f'.$id] + 1 + count($database->getBuildingByField($village->wid,$id)))) {
 					$logging->addBuildLog($village->wid,$this->procResType($tid),($village->resarray['f'.$id]+1),1);
 					$database->modifyResource($village->wid,$uprequire['wood'],$uprequire['clay'],$uprequire['iron'],$uprequire['crop'],0);
 					header("Location: dorf2.php");
 				}
-			}else{
-			header("Location: banned.php");
-			}
 			}
 		}
 	}
@@ -661,8 +638,6 @@ class Building {
 				$buildiron = $buildarray[$level]['iron'];
 				$buildcrop = $buildarray[$level]['crop'];
 				if($buildwood < $villwood && $buildclay < $villclay && $buildiron < $villiron && $buildcrop < $villcrop){
-				$newgold = $session->gold-1;
-				$database->updateUserField($session->uid, "gold", $newgold, 1);
 				$enought_res = 1;
 				$q = "UPDATE ".TB_PREFIX."fdata set f".$jobs['field']." = ".$jobs['level'].", f".$jobs['field']."t = ".$jobs['type']." where vref = ".$jobs['wid'];
 				}
@@ -701,14 +676,7 @@ class Building {
 			}
 		}
 		}
-		if(isset($_GET['id']))
-        {
-            header("Location: ".$session->referrer . "?id=" . $_GET['id']);
-        }
-        else
-        {
-            header("Location: ".$session->referrer);
-        }
+		header("Location: ".$session->referrer);
 		}else{
 		header("Location: banned.php");
 		}
