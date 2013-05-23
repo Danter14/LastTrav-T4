@@ -28,14 +28,14 @@ $htitle = HEADER_DAY;
     <div id="plus">
     	<a href="plus.php" class="plusBtn" title="<?php echo HEADER_PLUSMENU; ?>"><span class="plusBtn-l"><span class="plus_g"><?php echo HEADER_PLUS; ?></span></span><span class="plusBtn-r">&nbsp;</span></a>
     </div>
-        <?php if($session->access == MULTIHUNTER) { 
-		echo "<div id=\"plus\"> 
-    	<a href=\"".HOMEPAGE."Admin\" target=\"_blank\" title=\"".HEADER_ADMIN."\" class=\"plusBtn\"><span class=\"plusBtn-l\">".HEADER_ADMIN."</span></span><span class=\"plusBtn-r\">&nbsp;</span></a> 
+        <?php if($session->access == MULTIHUNTER) {
+		echo "<div id=\"plus\">
+    	<a href=\"".HOMEPAGE."/Admin\" target=\"_blank\" title=\"".HEADER_ADMIN."\" class=\"plusBtn\"><span class=\"plusBtn-l\">".HEADER_ADMIN."</span></span><span class=\"plusBtn-r\">&nbsp;</span></a>
     </div>";
 		} ?>
         <?php if($session->access == ADMIN) {
-		echo "<div id=\"plus\"> 
-    	<a href=\"".HOMEPAGE."Admin\" target=\"_blank\" title=\"".HEADER_ADMIN."\" class=\"plusBtn\"><span class=\"plusBtn-l\">".HEADER_ADMIN."</span></span><span class=\"plusBtn-r\">&nbsp;</span></a> 
+		echo "<div id=\"plus\">
+    	<a href=\"".HOMEPAGE."/Admin\" target=\"_blank\" title=\"".HEADER_ADMIN."\" class=\"plusBtn\"><span class=\"plusBtn-l\">".HEADER_ADMIN."</span></span><span class=\"plusBtn-r\">&nbsp;</span></a>
     </div>";
 		} ?>
 
