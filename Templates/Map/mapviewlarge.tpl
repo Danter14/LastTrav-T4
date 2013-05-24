@@ -6,26 +6,26 @@
 <?php
 if(isset($_GET['d']) && isset($_GET['c'])) {
 	if($generator->getMapCheck($_GET['d']) == $_GET['c']) {
-		$wref = $_GET['d'];
-		$coor = $database->getCoor($wref);
-		$x = $coor['x'];
-		$y = $coor['y'];
+        $wref = $_GET['d'];
+        $coor = $database->getCoor($wref);
+        $x = $coor['x'];
+        $y = $coor['y'];
 	}
 }
 else if(isset($_GET['x']) && isset($_GET['y'])) {
-	$x = $_GET['y'];
-	$y = $_GET['x'];
-	$bigmid = $generator->getBaseID($y,$x);
+    $x = $_GET['x'];
+    $y = $_GET['y'];
+    $bigmid = $generator->getBaseID($x,$y);
 }
 else if(isset($_POST['xp']) && isset($_POST['yp'])){
-	$x = $_POST['yp'];
-	$y = $_POST['xp'];
-	$bigmid = $generator->getBaseID($y,$x);
+	$x = $_POST['xp'];
+    $y = $_POST['yp'];
+    $bigmid = $generator->getBaseID($x,$y);
 }
 else {
-	$y = $village->coor['y'];
+    $y = $village->coor['y'];
 	$x = $village->coor['x'];
-	$bigmid = $village->wid;
+    $bigmid = $village->wid;
 }
 
 
@@ -268,12 +268,16 @@ break;
 </div>
 </div>
 		<div class="navigation" style="margin-bottom: -15px;">
-			<a href="karte2.php?x=<?php echo $y-5; ?>&y=<?php echo $x; ?>" id="navigationMoveLeft" class="moveLeft"><img src="img/x.gif" title="move left"></a>
-            		<a href="karte2.php?x=<?php echo $y+11; ?>&y=<?php echo $x; ?>" id="navigationMoveRight" class="moveRight"><img src="img/x.gif" title="move right"></a>
-			<a href="karte2.php?x=<?php echo $y; ?>&y=<?php echo $x+5; ?>" id="navigationMoveUp" class="moveUp"><img src="img/x.gif" title="move up"></a>
-			<a href="karte2.php?x=<?php echo $y; ?>&y=<?php echo $x-4; ?>" id="navigationMoveDown" class="moveDown"><img src="img/x.gif" title="move down"></a>
-            		<a href="karte.php?z=<?php echo $_GET['z']; ?>" id="navigationFullScreen" class="viewFullScreen normal"><img src="img/x.gif" alt="normál" title="normál térkép"></a>
-            <?php } ?>
+			<a href="karte2.php?z=<?php echo $generator->getBaseID($x,$west1);?>" id="navigationMoveLeft" class="moveLeft">
+            <img src="img/x.gif" title="move left"></a>
+			<a href="karte2.php?z=<?php echo $generator->getBaseID($x,$east1);?>" id="navigationMoveRight" class="moveRight">
+            <img src="img/x.gif" title="move right"></a>
+			<a href="karte2.php?z=<?php echo $generator->getBaseID($north1,$y);?>" id="navigationMoveUp" class="moveUp">
+            <img src="img/x.gif" title="move up"></a>
+			<a href="karte2.php?z=<?php echo $generator->getBaseID($south1,$y);?>" id="navigationMoveDown" class="moveDown">
+            <img src="img/x.gif" title="move down"></a>
+            <a href="karte.php?z=<?php echo $_GET['z']; ?>" id="navigationFullScreen" class="viewFullScreen normal"><img src="img/x.gif" alt="normál" title="Normal Map"></a>
+                       
 		</div>
 		<form id="mapCoordEnter" name="map_coords" method="post" action="karte.php" class="toolbar" style="margin-bottom: -15px;">
 	<div class="ml">
