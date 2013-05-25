@@ -1296,6 +1296,14 @@
         		$q = "UPDATE " . TB_PREFIX . "mdata set archived = 0 where id = $id";
         		return mysql_query($q, $this->connection);
         	}
+          
+          /*Addon fix header Message*/
+            function getMessage2($uid) {
+				$q = "SELECT * FROM " . TB_PREFIX . "mdata where target = $uid and viewed = 0 ORDER BY time DESC";
+				$result = mysql_query($q, $this->connection);
+				return $this->mysql_fetch_all($result);
+			}
+            /*fin ADD fix header Message*/
 
 			/***************************
 			Function to get messages

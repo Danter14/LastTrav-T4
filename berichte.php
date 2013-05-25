@@ -37,9 +37,9 @@ include "Templates/html.tpl";
 							<a class="" href="statistiken.php" accesskey="4" title="<?php echo HEADER_STATS; ?>"></a>
 						</li>
 <?php
-    	if(count($database->getMessage($session->uid,9)) >= 1000) {
+    	if(count($database->getMessage2($session->uid)) >= 1000) {
 			$unmsg = "+1000";
-		} else { $unmsg = count($database->getMessage($session->uid,9)); }
+		} else { $unmsg = count($database->getMessage2($session->uid)); }
 		
     	if(count($database->getNotice5($session->uid)) >= 1000) {
 			$unnotice = "+1000";
@@ -57,7 +57,7 @@ if($message->nunread){
 ?>
 </li>
 <li id="n6" class="messages"> 
-<a href="nachrichten.php" accesskey="6" title="<?php echo HEADER_MESSAGES; ?><?php if($message->unread){ echo' ('.count($database->getMessage($session->uid,9)).')'; } ?>"></a> 
+<a href="nachrichten.php" accesskey="6" title="<?php echo HEADER_MESSAGES; ?><?php if($message->unread){ echo' ('.count($database->getMessage2($session->uid)).')'; } ?>"></a> 
 <?php
 if($message->unread) {
 	echo "<div class=\"ltr bubble\" title=\"".$unmsg." ".HEADER_MESSAGES_NEW."\" style=\"display:block\">

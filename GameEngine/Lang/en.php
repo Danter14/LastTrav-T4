@@ -46,6 +46,7 @@ define("HEADER_SILVER","Silver");
 define("HEADER_NIGHT","Night");
 define("HEADER_DAY","Day");
 define("HEADER_NOTICES_NEW","New Report");
+define("HEADER_MESSAGES_NEW","New Report");
 
 
 define("SIDEINFO_ADVENTURES","Adventure");
