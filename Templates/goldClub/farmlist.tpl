@@ -203,7 +203,7 @@ $vdata = $database->getVillage($towref);
 <?php
 $noticeClass = array("Scout Report","Won as attacker without losses","Won as attacker with losses","Lost as attacker with losses","Won as defender without losses","Won as defender with losses","Lost as defender with losses","Lost as defender without losses","Reinforcement arrived","","Wood Delivered","Clay Delivered","Iron Delivered","Crop Delivered","","Won as defender without losses","Won as defender with losses","Lost as defender with losses","Won scouting as attacker","Lost scouting as attacker","Won scouting as defender","Lost scouting as defender");            
 $limits = "ntype!=4 and ntype!=5 and ntype!=6 and ntype!=7";
-$getnotice = mysql_query("SELECT * FROM ".TB_PREFIX."ndata WHERE $limits AND toWref = ".$towref." ORDER BY time DESC Limit 1");
+$getnotice = mysql_query("SELECT * FROM ".TB_PREFIX."ndata WHERE $limits AND toWref = ".$towref." AND uid = ".$session->uid." ORDER BY time DESC Limit 1");
 
 while($row2 = mysql_fetch_array($getnotice)){
 	$dataarray = explode(",",$row2['data']);
