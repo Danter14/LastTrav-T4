@@ -3,6 +3,7 @@ mysql_connect(SQL_SERVER, SQL_USER, SQL_PASS);
 mysql_select_db(SQL_DB);
 $sql = mysql_query("SELECT * FROM ".TB_PREFIX."config");
 $result = mysql_fetch_array($sql);
+mysql_close();
 
 //////////////////////////////////
 /////// قیمت های سکه ی طلا ///////
