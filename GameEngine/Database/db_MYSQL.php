@@ -305,7 +305,7 @@
 			public function conquerOasis($vref,$wref) {
 				$vinfo = $this->getVillage($vref);
 				$uid = $vinfo['owner'];
-				$q = "UPDATE `".TB_PREFIX."odata` SET conqured=$vref,loyalty=100,lastupdated=".time().",owner=$uid,name='Occupied Oasis' WHERE wref=$wref";
+				$q = "UPDATE `".TB_PREFIX."odata` SET conqured=$vref,loyalty=100,lastupdated=".time().",lastupdated2=".time().",owner=$uid,name='Occupied Oasis' WHERE wref=$wref";
         		return mysql_query($q, $this->connection);
 			}
 			
@@ -587,6 +587,13 @@
         		}
         		return $newarray;
         	}
+            
+            function getVillagesID2($uid) {
+        $q = "SELECT wref from " . TB_PREFIX . "vdata where owner = $uid order by capital DESC,pop DESC";
+        $result = mysql_query($q, $this->connection);
+        $array = $this->mysql_fetch_all($result);
+        return $array;
+      }
 
         	function getVillage($vid) {
         		$q = "SELECT * FROM " . TB_PREFIX . "vdata where wref = $vid";
@@ -1194,12 +1201,18 @@
         		$q = "UPDATE " . TB_PREFIX . "vdata set lastupdate = $time where wref = $vid";
         		return mysql_query($q, $this->connection);
         	}
+            
         	function updateOasis($vid) {
         		$time = time();
         		$q = "UPDATE " . TB_PREFIX . "odata set lastupdated = $time where wref = $vid";
         		return mysql_query($q, $this->connection);
         	}
-
+            
+            function updateOasis2($vid) {
+                $time = time();
+                $q = "UPDATE " . TB_PREFIX . "odata set lastupdated2 = $time where wref = $vid";
+                return mysql_query($q, $this->connection);
+            }
 
         	function setVillageName($vid, $name) {
         		$q = "UPDATE " . TB_PREFIX . "vdata set name = '$name' where wref = $vid";
@@ -2955,6 +2968,119 @@ break;
         			}
         		}
         	}
+            
+            function populateOasisUnitsLow2($wid) {
+              $basearray = $this->getMInfo($wid);
+          $max = rand(80, 120);
+              //each Troop is a Set for oasis type like mountains have rats spiders and snakes fields tigers elphants clay wolves so on stonger one more not so less
+              switch($basearray['oasistype']) {
+                case 1:
+                case 2:
+              // Oasis Random populate
+              $UP35 = rand(5, 30);
+              $UP36 = rand(5, 30);
+              $UP37 = rand(0, 30);
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u35 = u35 +  '" . $UP35 . "', u36 = u36 + '" . $UP36 . "', u37 = u37 + '" . $UP37 . "' WHERE vref = '" . $wid . "' AND u35 <= ".$max." AND u36 <= ".$max." AND u37 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 3:
+              // Oasis Random populate
+              $UP35 = rand(5, 30);
+              $UP36 = rand(5, 30);
+              $UP37 = rand(1, 30);
+              $UP39 = rand(0, 10);
+              $fil = rand(0,10);
+              if($fil == 1){
+                $UP40 = rand(0, 31);
+              }else{
+                $UP40 = 0;
+              }
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u35 = u35 +  '" . $UP35 . "', u36 = u36 + '" . $UP36 . "', u37 = u37 + '" . $UP37 . "', u39 = u39 + '" . $UP39 . "', u40 = u40 + '" . $UP40 . "' WHERE vref = '" . $wid . "' AND u35 <= ".$max." AND u36 <= ".$max." AND u37 <= ".$max."  AND u39 <= ".$max." AND u40 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 4:
+                case 5:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP32 = rand(5, 30);
+              $UP35 = rand(0, 25);
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u32 = u32 + '" . $UP32 . "', u35 = u35 + '" . $UP35 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u32 <= ".$max." AND u35 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 6:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP32 = rand(5, 30);
+              $UP35 = rand(1, 25);
+              $UP38 = rand(0, 15);
+              $fil = rand(0,10);
+              if($fil == 1){
+                $UP40 = rand(0, 31);
+              }else{
+                $UP40 = 0;
+              }
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u32 = u32 + '" . $UP32 . "', u35 = u35 + '" . $UP35 . "', u38 = u38 + '" . $UP38 . "', u40 = u40 + '" . $UP40 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u32 <= ".$max." AND u35 <= ".$max." AND u38 <= ".$max." AND u40 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 7:
+                case 8:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP32 = rand(5, 30);
+              $UP34 = rand(0, 25);
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u32 = u32 + '" . $UP32 . "', u34 = u34 + '" . $UP34 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u32 <= ".$max." AND u34 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 9:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP32 = rand(5, 30);
+              $UP34 = rand(1, 25);
+              $UP37 = rand(0, 15);
+              $fil = rand(0,10);
+              if($fil == 1){
+                $UP40 = rand(0, 31);
+              }else{
+                $UP40 = 0;
+              }
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u32 = u32 + '" . $UP32 . "', u34 = u34 + '" . $UP34 . "', u37 = u37 + '" . $UP37 . "', u40 = u40 + '" . $UP40 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u32 <= ".$max." AND u34 <= ".$max." AND u37 <= ".$max." AND u40 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 10:
+                case 11:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP33 = rand(5, 30);
+              $UP37 = rand(1, 25);
+              $UP39 = rand(0, 25);
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u33 = u33 + '" . $UP33 . "', u37 = u37 + '" . $UP37 . "', u39 = u39 + '" . $UP39 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u33 <= ".$max." AND u37 <= ".$max." AND u39 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+                case 12:
+              // Oasis Random populate
+              $UP31 = rand(5, 40);
+              $UP33 = rand(5, 30);
+              $UP38 = rand(1, 25);
+              $UP39 = rand(0, 25);
+              $fil = rand(0,10);
+              if($fil == 1){
+                $UP40 = rand(0, 31);
+              }else{
+                $UP40 = 0;
+              }
+              //+25% lumber per hour
+                  $q = "UPDATE " . TB_PREFIX . "units SET u31 = u31 +  '" . $UP31 . "', u33 = u33 + '" . $UP33 . "', u38 = u38 + '" . $UP38 . "', u39 = u39 + '" . $UP39 . "', u40 = u40 + '" . $UP40 . "' WHERE vref = '" . $wid . "' AND u31 <= ".$max." AND u33 <= ".$max." AND u38 <= ".$max." AND u39 <= ".$max." AND u40 <= ".$max."";
+                  $result = mysql_query($q, $this->connection);
+                  break;
+              }
+          }
 			
 			public function hasBeginnerProtection($vid) {
 				$q = "SELECT u.protect FROM ".TB_PREFIX."users u,".TB_PREFIX."vdata v WHERE u.id=v.owner AND v.wref=".$vid;

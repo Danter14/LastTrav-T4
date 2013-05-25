@@ -167,6 +167,7 @@ class Automation {
         }
 		$this->updateStore();
 		$this->TradeRoute();
+        $this->regenerateOasisTroops();
     }
 	
 	private function getfieldDistance($coorx1, $coory1, $coorx2, $coory2) {
@@ -382,7 +383,22 @@ class Automation {
 					$q = "UPDATE " . TB_PREFIX . "alidata set leader = ".$newleader." where id = ".$alliance."";
 					$database->query($q);
 					$database->updateAlliPermissions($newleader, $alliance, "Leader", 1, 1, 1, 1, 1, 1, 1);
-					$this->updateMax($newleader);
+					$villages = $database->getVillagesID2($newleader);
+                    $max = 0;
+                    foreach($villages as $village){
+                    $field = $database->getResourceLevel($village['wref']);
+                    for($i=19;$i<=40;$i++){
+                    if($field['f'.$i.'t'] == 18){
+                    $level = $field['f'.$i];
+                    $attri = $bid18[$level]['attri'];
+                    }
+                    }
+                    if($attri > $max){
+                    $max = $attri;
+                    }
+                    }
+          $q = "UPDATE ".TB_PREFIX."alidata set max = $max where leader = $newleader";
+          $database->query($q);
 					}
 					$database->deleteAlliance($alliance);
 					$q = "DELETE FROM ".TB_PREFIX."hero where uid = ".$need['uid'];
@@ -628,10 +644,23 @@ class Automation {
                 $database->modifyPop($indi['wid'],$pop[0],0);
                 $database->addCP($indi['wid'],$pop[1]);
                 if($indi['type'] == 18) {
-                    $owner = $database->getVillageField($indi['wid'],"owner");
-                    $max = $bid18[$level]['attri'];
-                    $q = "UPDATE ".TB_PREFIX."alidata set max = $max where leader = $owner";
-                    $database->query($q);
+                    $allyleader = $database->getVillageField($indi['wid'],"owner");
+                    $allyvillages = $database->getVillagesID2($allyleader);
+                    $allymax = 0;
+                    foreach($allyvillages as $allyvillage){
+                    $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                    for($i=19;$i<=40;$i++){
+                if($allyfield['f'.$i.'t'] == 18){
+                    $allylevel = $allyfield['f'.$i];
+                    $allyattri = $bid18[$allylevel]['attri'];
+                    }
+                    }
+                if($allyattri > $allymax){
+                    $allymax = $allyattri;
+                    }
+                    }
+        $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
+        $database->query($q);
                 }
 
                     if($indi['type'] == 10) {
@@ -1828,8 +1857,22 @@ class Automation {
                         $database->query($q);
                     }
 					if($tbgid==18) {
-						$owner = $database->getVillageField($data['to'],"owner");
-						$q = "UPDATE ".TB_PREFIX."alidata set max = 0 where leader = $owner";
+						$allyleader = $database->getVillageField($data['to'],"owner");
+                        $allyvillages = $database->getVillagesID2($allyleader);
+                        $allymax = 0;
+                        foreach($allyvillages as $allyvillage){
+                        $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                        for($i=19;$i<=40;$i++){
+                    if($allyfield['f'.$i.'t'] == 18){
+                        $allylevel = $allyfield['f'.$i];
+                        $allyattri = $bid18[$allylevel]['attri'];
+                        }
+                        }
+                    if($allyattri > $allymax){
+                        $allymax = $allyattri;
+                        }
+                        }
+                    $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 						$database->query($q);
 					}
                     $pop=$this->recountPop($data['to']);
@@ -1903,9 +1946,22 @@ class Automation {
                             $database->query($q);
                         }       
 						if($tbgid==18) {
-							$owner = $database->getVillageField($data['to'],"owner");
-							$maxally = $buildarray[$totallvl]['attri'];
-							$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+							$allyleader = $database->getVillageField($data['to'],"owner");
+                            $allyvillages = $database->getVillagesID2($allyleader);
+                            $allymax = 0;
+                            foreach($allyvillages as $allyvillage){
+                            $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                            for($i=19;$i<=40;$i++){
+                        if($allyfield['f'.$i.'t'] == 18){
+                            $allylevel = $allyfield['f'.$i];
+                            $allyattri = $bid18[$allylevel]['attri'];
+                            }
+                            }
+                        if($allyattri > $allymax){
+                            $allymax = $allyattri;
+                            }
+                            }
+                        $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 							$database->query($q);
 						}
                         $pop=$this->recountPop($data['to']);
@@ -1996,9 +2052,22 @@ class Automation {
                         $database->query($q);
                     }                                    
 					if($tbgid==18) {
-						$owner = $database->getVillageField($data['to'],"owner");
-						$maxally = $buildarray[$totallvl]['attri'];
-						$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+						$allyleader = $database->getVillageField($data['to'],"owner");
+                        $allyvillages = $database->getVillagesID2($allyleader);
+                        $allymax = 0;
+                        foreach($allyvillages as $allyvillage){
+                        $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                        for($i=19;$i<=40;$i++){
+                    if($allyfield['f'.$i.'t'] == 18){
+                        $allylevel = $allyfield['f'.$i];
+                        $allyattri = $bid18[$allylevel]['attri'];
+                        }
+                        }
+                    if($allyattri > $allymax){
+                        $allymax = $allyattri;
+                        }
+                        }
+                    $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 						$database->query($q);
 					}
                     $pop=$this->recountPop($data['to']);
@@ -2067,9 +2136,22 @@ class Automation {
                             $database->query($q);
                         }
 						if($tbgid==18) {
-							$owner = $database->getVillageField($data['to'],"owner");
-							$maxally = $buildarray[$totallvl]['attri'];
-							$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+							$allyleader = $database->getVillageField($data['to'],"owner");
+                            $allyvillages = $database->getVillagesID2($allyleader);
+                            $allymax = 0;
+                            foreach($allyvillages as $allyvillage){
+                            $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                            for($i=19;$i<=40;$i++){
+                        if($allyfield['f'.$i.'t'] == 18){
+                            $allylevel = $allyfield['f'.$i];
+                            $allyattri = $bid18[$allylevel]['attri'];
+                            }
+                            }
+                        if($allyattri > $allymax){
+                            $allymax = $allyattri;
+                            }
+                            }
+                        $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 							$database->query($q);
 						}
                         $pop=$this->recountPop($data['to']);
@@ -2160,9 +2242,22 @@ class Automation {
                         $database->query($q);
                     }                                  
 					if($tbgid==18) {
-						$owner = $database->getVillageField($data['to'],"owner");
-						$maxally = $buildarray[$totallvl]['attri'];
-						$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+						$allyleader = $database->getVillageField($data['to'],"owner");
+                        $allyvillages = $database->getVillagesID2($allyleader);
+                        $allymax = 0;
+                        foreach($allyvillages as $allyvillage){
+                        $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                        for($i=19;$i<=40;$i++){
+                    if($allyfield['f'.$i.'t'] == 18){
+                        $allylevel = $allyfield['f'.$i];
+                        $allyattri = $bid18[$allylevel]['attri'];
+                        }
+                        }
+                    if($allyattri > $allymax){
+                        $allymax = $allyattri;
+                        }
+                        }
+                    $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 						$database->query($q);
 					}
                     $pop=$this->recountPop($data['to']);
@@ -2228,9 +2323,22 @@ $info_cata=" damaged from level <b>".$tblevel."</b> to level <b>".$totallvl."</b
                             $database->query($q);
                         }       
 						if($tbgid==18) {
-							$owner = $database->getVillageField($data['to'],"owner");
-							$maxally = $buildarray[$totallvl]['attri'];
-							$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+						    $allyleader = $database->getVillageField($data['to'],"owner");
+                            $allyvillages = $database->getVillagesID2($allyleader);
+                            $allymax = 0;
+                            foreach($allyvillages as $allyvillage){
+                            $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                            for($i=19;$i<=40;$i++){
+                        if($allyfield['f'.$i.'t'] == 18){
+                            $allylevel = $allyfield['f'.$i];
+                            $allyattri = $bid18[$allylevel]['attri'];
+                            }
+                            }
+                        if($allyattri > $allymax){
+                            $allymax = $allyattri;
+                            }
+                            }
+                        $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 							$database->query($q);
 						}
                         $pop=$this->recountPop($data['to']);
@@ -3809,9 +3917,22 @@ $info_cata=" damaged from level <b>".$tblevel."</b> to level <b>".$totallvl."</b
                     $database->query($q);
                 }
 				if($type==18) {
-					$owner = $database->getVillageField($vil['vref'],"owner");
-					$maxally = $buildarray[$level]['attri'];
-					$q = "UPDATE ".TB_PREFIX."alidata set max = $maxally where leader = $owner";
+					$allyleader = $database->getVillageField($data['to'],"owner");
+                    $allyvillages = $database->getVillagesID2($allyleader);
+                    $allymax = 0;
+                    foreach($allyvillages as $allyvillage){
+                    $allyfield = $database->getResourceLevel($allyvillage['wref']);
+                    for($i=19;$i<=40;$i++){
+                if($allyfield['f'.$i.'t'] == 18){
+                    $allylevel = $allyfield['f'.$i];
+                    $allyattri = $bid18[$allylevel]['attri'];
+                    }
+                    }
+                if($allyattri > $allymax){
+                    $allymax = $allyattri;
+                    }
+                    }
+                $q = "UPDATE ".TB_PREFIX."alidata set max = $allymax where leader = $allyleader";
 					$database->query($q);
 				}
                 if ($level==1) { $clear=",f".$vil['buildnumber']."t=0"; } else { $clear=""; }
@@ -4283,6 +4404,17 @@ $info_cata=" damaged from level <b>".$tblevel."</b> to level <b>".$totallvl."</b
 			unlink("GameEngine/Prevention/climbers.txt");
 		}
 	}
+    
+    private function regenerateOasisTroops() {
+            global $database;
+            $time = time();
+            $q = "SELECT * FROM " . TB_PREFIX . "odata where conqured = 0 and $time - lastupdated2 > 86400";
+            $array = $database->query_return($q);
+            foreach($array as $oasis) {
+            $database->populateOasisUnitsLow2($oasis['wref']);
+            $database->updateOasis2($oasis['wref']);
+            }
+        }
 
 }
 
