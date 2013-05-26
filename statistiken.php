@@ -40,7 +40,7 @@ include "Templates/html.tpl";
 <?php
     	if(count($database->getMessage2($session->uid)) >= 1000){
 			$unmsg = "+1000";
-		} else { $unmsg = count($database->getMessage($session->uid)); }
+		} else { $unmsg = count($database->getMessage2($session->uid)); }
 		
     	if(count($database->getNotice5($session->uid)) >= 1000) {
 			$unnotice = "+1000";
